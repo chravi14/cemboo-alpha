@@ -6,7 +6,7 @@ interface IProps extends React.HTMLProps<HTMLInputElement> {
   onDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input: React.FC<IProps> = ({
+export const TextInput: React.FC<IProps> = ({
   placeholder,
   onDataChange,
   name,

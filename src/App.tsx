@@ -1,14 +1,25 @@
-import React from "react";
+import { config } from "./config/config.local";
+
+import {
+  Footer,
+  HeroSectionContainer,
+  NavigationContainer,
+} from "./components";
+
 import "./App.css";
-import { HeroSectionContainer } from "./components/hero-section/HeroSection.container";
-import { Footer } from "./components/Footer/Footer.container";
 
 function App() {
+  const { isComingSoon } = config;
   return (
     <div className="container">
-      <div className="main">
-        <HeroSectionContainer />
-      </div>
+      <NavigationContainer />
+
+      {isComingSoon && (
+        <div className="main" id="coming-soon">
+          <HeroSectionContainer />
+        </div>
+      )}
+
       <div className="footer">
         <Footer />
       </div>
