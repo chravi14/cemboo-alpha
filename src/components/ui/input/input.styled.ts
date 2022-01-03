@@ -10,4 +10,9 @@ export const TextInputWrapper = styled.input`
   width: 100%;
   padding: 0 16px;
   font-size: 16px;
+  border: 1px solid transparent;
+
+  &.error {
+    border: 1px solid crimson;
+  }
 `;

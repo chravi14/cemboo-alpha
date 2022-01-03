@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
+import isEmail from "validator/lib/isEmail";
 import { Input } from "../input/input.container";
 
 import * as Styled from "./Modal.styled";
+import { Loader } from "../loader/loader";
 
 interface IProps {
   show: boolean;
@@ -14,6 +16,8 @@ export const Modal: React.FC<IProps> = ({ show, closeHandler }) => {
     "https://oy65qolfid.execute-api.us-east-1.amazonaws.com/dev/users";
   const [isDisabled, setIsDisabled] = React.useState(true);
   const [showThanksPopup, setShowThanksPopup] = React.useState(false);
+  const [showLoader, setShowLoader] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [userData, setUserData] = React.useState({
     firstname: "",
     lastname: "",
@@ -25,7 +29,7 @@ export const Modal: React.FC<IProps> = ({ show, closeHandler }) => {
   const wrapperRef = useRef(null);
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
+    setEmailErrorMessage("");
     setUserData({
       ...userData,
       [event.target.name]: event.target.value,
@@ -63,6 +67,7 @@ export const Modal: React.FC<IProps> = ({ show, closeHandler }) => {
 
   const closeModal = () => {
     closeHandler();
+    setShowThanksPopup(false);
   };
 
   const handleEscPress = (event: any) => {
@@ -88,23 +93,40 @@ export const Modal: React.FC<IProps> = ({ show, closeHandler }) => {
   useOutsideAlerter(wrapperRef);
 
   const submitHandler = () => {
+    setEmailErrorMessage("");
     if (userData.firstname && userData.lastname && userData.email) {
       // Add axios logic to send data to lamda
-      axios
-        .post(API_URL, {
-          ...userData,
-        })
-        .then((response) => {
-          console.log(response);
-          setShowThanksPopup(true);
-        })
-        .catch((err) => console.log(err));
+      if (!isEmail(userData.email)) {
+        setEmailErrorMessage("Please enter a valid email address.");
+      } else {
+        setShowLoader(true);
+        axios
+          .post(API_URL, {
+            ...userData,
+          })
+          .then((response) => {
+            const { data } = response;
+            if (data.status === 200) {
+              setShowLoader(false);
+              setShowThanksPopup(true);
+            } else {
+              const message = JSON.parse(data.body)["Error"];
+              setShowLoader(false);
+              setEmailErrorMessage(message);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setShowLoader(false);
+          });
+      }
     }
   };
 
   return (
     <Styled.ModalWrapper show={show}>
       <Styled.ModalContentWrapper ref={wrapperRef}>
+        {showLoader && <Loader />}
         {showThanksPopup ? (
           <>
             <Styled.ModalHeader>
@@ -153,10 +175,19 @@ export const Modal: React.FC<IProps> = ({ show, closeHandler }) => {
                   <Input
                     placeholder="Email"
                     name="email"
+                    type="email"
                     value={userData.email}
                     onDataChange={(e) => onChangeInput(e)}
+                    className={emailErrorMessage !== "" ? "error" : ""}
                   />
                 </Styled.FormRow>
+                {emailErrorMessage && (
+                  <Styled.FormRow>
+                    <Styled.ErrorMessage>
+                      {emailErrorMessage}
+                    </Styled.ErrorMessage>
+                  </Styled.FormRow>
+                )}
                 <Styled.FormLabel>Receive notifications about</Styled.FormLabel>
                 <Styled.CheckBoxWrapper>
                   <Styled.CheckBoxItemWrapper>

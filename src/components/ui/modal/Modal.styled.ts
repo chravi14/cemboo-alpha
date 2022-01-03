@@ -106,6 +106,12 @@ export const FormCol = styled.div`
   }
 `;
 
+export const ErrorMessage = styled.p`
+  font-size: 12px;
+  color: crimson;
+  margin-top: 5px;
+`;
+
 export const FormLabel = styled.p`
   font-size: 16px;
   color: #ffffff;
@@ -125,7 +131,7 @@ export const CheckBoxItemWrapper = styled.div`
   padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 5px 0;
   border-radius: 5px;
 `;

@@ -9,13 +9,22 @@ export const Footer = () => {
   return (
     <Styled.FooterWrapper>
       <Styled.FooterLeftWrapper>
-        <Styled.FooterLink href="" target="_blank">
+        <Styled.FooterLink
+          href="https://www.linkedin.com/company/haydenfilms-institute"
+          target="_blank"
+        >
           <Styled.FooterIcon src={LinkedInIcon} />
         </Styled.FooterLink>
-        <Styled.FooterLink href="" target="_blank">
+        <Styled.FooterLink
+          href="https://twitter.com/Haydenfilms"
+          target="_blank"
+        >
           <Styled.FooterIcon src={TwitterIcon} />
         </Styled.FooterLink>
-        <Styled.FooterLink href="" target="_blank">
+        <Styled.FooterLink
+          href="https://www.instagram.com/haydenfilms"
+          target="_blank"
+        >
           <Styled.FooterIcon src={InstagramIcon} />
         </Styled.FooterLink>
       </Styled.FooterLeftWrapper>

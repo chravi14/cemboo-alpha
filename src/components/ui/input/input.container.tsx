@@ -10,12 +10,16 @@ export const Input: React.FC<IProps> = ({
   placeholder,
   onDataChange,
   name,
+  className,
+  type,
 }) => {
   return (
     <Styled.TextInputWrapper
       placeholder={placeholder}
       onChange={onDataChange}
       name={name}
+      type={type}
+      className={className}
     />
   );
 };
