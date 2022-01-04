@@ -1,7 +1,12 @@
-#coming-soon.main {
+.main {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 80vh;
+  color: #fff;
+}
+
+#coming-soon.main {
   height: 100vh;
 }
 
