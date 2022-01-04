@@ -13,6 +13,8 @@ export const LogoWrapper = styled.div`
   padding: 20px;
 `;
 
+export const LogoLink = styled.a``;
+
 export const LogoImage = styled.img`
   cursor: pointer;
   width: 121px;
@@ -34,6 +36,12 @@ export const StyledNavLink = styled(NavLink)<any>`
   color: #ffffff;
   font-weight: 600;
   font-size: 14px;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 5px;
+
+  &.active {
+    border-bottom: 2px solid rgba(183, 248, 77, 1);
+  }
 `;
 
 export const NavRightLinksWrapper = styled.ul`
