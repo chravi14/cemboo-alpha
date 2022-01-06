@@ -12,11 +12,9 @@ const animateTop = keyframes`
 `;
 
 export const ModalWrapper = styled.div<any>`
-  display: ${(props) =>
-    props.show ? "block" : "none"}; /* Hidden by default */
+  display: ${(props) => (props.show ? "flex" : "none")}; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -26,8 +24,9 @@ export const ModalWrapper = styled.div<any>`
   background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
   background: rgba(11, 11, 11, 0.9);
 
-  @media (max-width: 500px) {
-    padding-top: 0;
+  @media (max-width: 768px) {
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -44,11 +43,12 @@ export const ModalContentWrapper = styled.div`
   animation-duration: 0.4s;
   padding: 20px 40px;
   @media (max-width: 768px) {
-    width: 50%;
+    width: 60%;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     width: 100%;
     height: 100%;
+    padding: 20px 30px;
   }
 `;
 
@@ -64,8 +64,8 @@ export const ModalH1 = styled.h1`
   font-size: 32px;
   flex: 1;
 
-  @media (max-width: 500px) {
-    font-size: 26px;
+  @media (max-width: 600px) {
+    font-size: 24px;
   }
 `;
 
@@ -84,6 +84,9 @@ export const ModalBody = styled.div`
 
 export const SignupFormWrapper = styled.div`
   padding-top: 40px;
+  @media (max-width: 600px) {
+    padding-top: 10px;
+  }
 `;
 
 export const FormRow = styled.div`
