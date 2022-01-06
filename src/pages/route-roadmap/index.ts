@@ -1,1 +1,1 @@
-export { RoadmapPageContainer } from "./roadmap-page.container";
+export { RoadmapPage } from "./roadmap-page";

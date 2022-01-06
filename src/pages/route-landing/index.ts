@@ -1,1 +1,1 @@
-export { LandingPageContainer } from "./landing-page.container";
+export { LandingPage } from "./landing-page";

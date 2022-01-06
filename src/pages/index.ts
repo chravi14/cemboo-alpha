@@ -1,3 +1,3 @@
-export { AboutPageContainer } from "./route-about";
-export { LandingPageContainer } from "./route-landing";
-export { RoadmapPageContainer } from "./route-roadmap";
+export { AboutPage } from "./route-about";
+export { LandingPage } from "./route-landing";
+export { RoadmapPage } from "./route-roadmap";
