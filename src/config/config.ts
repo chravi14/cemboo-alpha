@@ -1,4 +1,4 @@
 export const config = {
-  isComingSoon: true,
+  isComingSoon: false,
   API_URL: "https://oy65qolfid.execute-api.us-east-1.amazonaws.com/dev/users",
 };

@@ -5,11 +5,7 @@ import {
   HeroSectionContainer,
   NavigationContainer,
 } from "./components";
-import {
-  AboutPageContainer,
-  LandingPageContainer,
-  RoadmapPageContainer,
-} from "./pages";
+import { AboutPage, LandingPage, RoadmapPage } from "./pages";
 import { config } from "./config/config";
 import "./App.css";
 
@@ -22,9 +18,9 @@ function App() {
           <NavigationContainer />
           <div className="main">
             <Routes>
-              <Route path="/" element={<LandingPageContainer />} />
-              <Route path="about" element={<AboutPageContainer />} />
-              <Route path="roadmap" element={<RoadmapPageContainer />} />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="roadmap" element={<RoadmapPage />} />
             </Routes>
           </div>
         </>
