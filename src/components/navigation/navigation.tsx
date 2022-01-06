@@ -1,10 +1,15 @@
 import React from "react";
 import Logo from "./../../assets/logo.png";
+import MobileMenuIcon from "./../../assets/menu.png";
+import { MobileMenu } from "./mobile-menu";
 
 import * as Styled from "./navigation.styled";
 import { Button } from "../ui/button/button";
+import { Modal } from "../ui";
 
 export const Navigation = () => {
+  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  const [showSignInModal, setShowSignInModal] = React.useState(false);
   return (
     <Styled.NavigationWrapper>
       <Styled.LogoWrapper>
@@ -33,8 +38,25 @@ export const Navigation = () => {
         </Styled.NavLinkItem>
       </Styled.NavLeftLinksWrapper>
       <Styled.NavRightLinksWrapper>
-        <Button buttonText="Notify Me" />
+        <Button
+          buttonText="Notify Me"
+          clickHandler={() => setShowSignInModal(true)}
+        />
       </Styled.NavRightLinksWrapper>
+      <Styled.MobileMenuIconWrapper>
+        <Styled.MobileMenuIcon
+          src={MobileMenuIcon}
+          onClick={() => setShowMobileMenu(true)}
+        />
+      </Styled.MobileMenuIconWrapper>
+      <MobileMenu
+        show={showMobileMenu}
+        closeHandler={() => setShowMobileMenu(false)}
+      />
+      <Modal
+        closeHandler={() => setShowSignInModal(false)}
+        show={showSignInModal}
+      />
     </Styled.NavigationWrapper>
   );
 };

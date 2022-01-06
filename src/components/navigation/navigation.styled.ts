@@ -4,13 +4,18 @@ import { NavLink } from "react-router-dom";
 export const NavigationWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
-  align-item: center;
+  align-items: center;
   height: 60px;
 `;
 
 export const LogoWrapper = styled.div`
   margin-right: 20px;
   padding: 20px;
+
+  @media only screen and (max-width: 600px) {
+    margin-right: 5px;
+    padding: 10px;
+  }
 `;
 
 export const LogoLink = styled.a``;
@@ -25,6 +30,10 @@ export const NavLeftLinksWrapper = styled.ul`
   justify-content: flex-start;
   align-items: center;
   flex: 1;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const NavLinkItem = styled.li`
@@ -46,4 +55,18 @@ export const StyledNavLink = styled(NavLink)<any>`
 
 export const NavRightLinksWrapper = styled.ul`
   padding: 10px 20px;
+  @media only screen and (max-width: 600px) {
+    padding: 0;
+  }
+`;
+
+export const MobileMenuIconWrapper = styled.div`
+  @media only screen and (min-width: 600px) {
+    display: none;
+  }
+  margin: 0 5px;
+`;
+
+export const MobileMenuIcon = styled.img`
+  width: 30px;
 `;

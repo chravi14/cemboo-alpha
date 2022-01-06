@@ -12,6 +12,10 @@ export const FooterWrapper = styled.div`
     #b7f84d;
   height: 40px;
   padding: 0 16px;
+
+  @media screen and (max-width: 600px) {
+    padding: 0 8px;
+  }
 `;
 
 export const FooterLeftWrapper = styled.div`
