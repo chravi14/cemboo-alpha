@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const VideoElement = styled.video`
+export const VideoElement = styled.video<any>`
   max-width: 100%;
   width: 100%;
   height: 100%;
