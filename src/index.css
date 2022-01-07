@@ -1,12 +1,18 @@
+/* Reset styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* common resets for a, li */
 a {
   text-decoration: none;
   cursor: pointer;
+}
+
+li {
+  list-style-type: none;
 }
 
 body {
@@ -14,7 +20,8 @@ body {
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("./assets/bg2.png"), url("./assets/bg1.png"),
+  background: url("./assets/images/background/bg2.png"),
+    url("./assets/images/background/bg1.png"),
     radial-gradient(50% 50% at 50% 50%, rgba(17, 18, 21) 0%, #111215 100%);
   background-blend-mode: darken, screen;
   background-size: 100% 100%;
