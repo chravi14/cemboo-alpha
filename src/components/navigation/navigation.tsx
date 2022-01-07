@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "./../../assets/logo.png";
-import MobileMenuIcon from "./../../assets/menu.png";
+import Logo from "./../../assets/images/logos/logo.png";
+import MobileMenuIcon from "./../../assets/images/icons/menu.png";
 import { MobileMenu } from "./mobile-menu";
 
 import * as Styled from "./navigation.styled";
