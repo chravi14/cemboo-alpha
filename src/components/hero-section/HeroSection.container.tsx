@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "../ui/modal/Modal";
-import Logo from "./../../assets/logo.png";
+import Logo from "./../../assets/images/logos/logo.png";
 
 import * as Styled from "./HeroSection.styled";
 
