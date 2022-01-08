@@ -16,7 +16,7 @@ export const Player = () => {
     if (IVSPlayer.isPlayerSupported) {
       const player = IVSPlayer.create();
       player.attachHTMLVideoElement(playerRef.current);
-      player.load(config.VIDEO_URL);
+      player.load(config.TEST_VIDEO_URL);
       player.play();
     }
   }, [playerRef]);
