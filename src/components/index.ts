@@ -1,3 +1,4 @@
+export { AboutContainer } from "./about-components";
 export { Footer } from "./footer-section";
 export { HeroSectionContainer } from "./hero-section";
 export { Player, JudgesList } from "./landing-components";

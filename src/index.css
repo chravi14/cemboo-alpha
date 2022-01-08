@@ -24,7 +24,7 @@ body {
     url("./assets/images//background/landing_bg.png"),
     radial-gradient(
       50% 50% at 50% 50%,
-      rgba(17, 18, 21, 0.8) 0%,
+      rgba(17, 18, 21, 0.6) 0%,
       rgba(17, 18, 21, 1) 100%
     );
   /* background: url("./assets/images/background/landing_bg2.png"),
@@ -57,6 +57,21 @@ code {
         rgba(17, 18, 21, 1) 0%,
         rgba(17, 18, 21, 1) 100%
       );
-    background-blend-mode: darken, screen;
+    background-blend-mode: difference;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  body {
+    background: url("./assets/images/background/landing_bg2.png"),
+      url("./assets/images/background/landing_bg.png"),
+      radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(17, 18, 21, 1) 0%,
+        rgba(17, 18, 21, 1) 50%,
+        rgba(17, 18, 21, 1) 100%
+      );
+    background-blend-mode: difference;
+    background-size: cover;
   }
 }
