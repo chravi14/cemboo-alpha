@@ -16,3 +16,5 @@ export const VideoElement = styled.video<any>`
     width: 100%;
   }
 `;
+
+export const JWPlayerElement = styled.div``;

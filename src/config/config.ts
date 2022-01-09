@@ -8,4 +8,5 @@ export const config = {
     "https://f9c1e1505248.us-east-1.playback.live-video.net/api/video/v1/us-east-1.700507370134.channel.QAKZirdC2l7a.m3u8",
   S3_VIDEO_URL:
     "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/video.mp4",
+  IS_AWS_IVS: false,
 };

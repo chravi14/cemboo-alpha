@@ -71,7 +71,7 @@ code {
         rgba(17, 18, 21, 1) 50%,
         rgba(17, 18, 21, 1) 100%
       );
-    background-blend-mode: difference;
+    background-blend-mode: darken, screen;
     background-size: cover;
   }
 }
