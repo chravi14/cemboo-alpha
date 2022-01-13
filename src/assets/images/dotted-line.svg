@@ -1,0 +1,13 @@
+svg {
+  width: 160px;
+}
+
+path {
+  fill: none;
+  stroke-dasharray: 2, 10; /*adjust this to control the number of dots*/
+  stroke-width:2px;
+}
+
+<svg viewBox="0 0 160 160">
+  <path d="M150,0 C150,100 100,150 0,150"  stroke="red"  />
+</svg>

@@ -27,7 +27,7 @@ export const Navigation = () => {
             About
           </Styled.StyledNavLink>
         </Styled.NavLinkItem>
-        <Styled.NavLinkItem>
+        {/* <Styled.NavLinkItem>
           <Styled.StyledNavLink
             to="roadmap"
             activeclassname="active"
@@ -35,7 +35,7 @@ export const Navigation = () => {
           >
             Roadmap
           </Styled.StyledNavLink>
-        </Styled.NavLinkItem>
+        </Styled.NavLinkItem> */}
       </Styled.NavLeftLinksWrapper>
       <Styled.NavRightLinksWrapper>
         <Button
