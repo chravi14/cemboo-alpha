@@ -23,3 +23,8 @@ export const JudgeItemBioWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const CustomLinkNewTab = styled.a`
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+`;

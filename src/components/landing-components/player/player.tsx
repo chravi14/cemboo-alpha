@@ -11,13 +11,6 @@ declare global {
 
 export const Player = () => {
   const playerRef = useRef();
-  const currentMediaId = "2ge0Ws66";
-  if (config.IS_AWS_IVS) {
-  }
-
-  // useEffect(() => {
-
-  // }, [playerRef]);
 
   useEffect(() => {
     if (config.IS_AWS_IVS) {
@@ -25,14 +18,19 @@ export const Player = () => {
       if (IVSPlayer.isPlayerSupported) {
         const player = IVSPlayer.create();
         player.attachHTMLVideoElement(playerRef.current);
-        player.load(config.TEST_VIDEO_URL);
+        player.load(config.IVS_VIDEO_URL);
         player.play();
       }
     } else {
       const jwplayer = window.jwplayer;
       if (jwplayer) {
         jwplayer("myplayer").setup({
-          playlist: `https://cdn.jwplayer.com/v2/media/${currentMediaId}`,
+          playlist: [
+            {
+              file: config.IVS_VIDEO_URL,
+              type: "ivs",
+            },
+          ],
         });
       }
     }
@@ -41,8 +39,8 @@ export const Player = () => {
   return (
     <>
       {config.IS_AWS_IVS ? (
-        <Styled.VideoElement controls loop ref={playerRef} playsinline>
-          <source type="video/mp4" />
+        <Styled.VideoElement controls muted ref={playerRef} playsinline>
+          <source type="video/mp4" src={config.S3_VIDEO_URL} />
           Your browser does not support the video tag.
         </Styled.VideoElement>
       ) : (

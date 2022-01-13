@@ -1,15 +1,24 @@
 import * as Styled from "./judge-item.styled";
 import { CustomBoldText, CustomLightText } from "../../../ui/typography/";
-import JudgeImage from "./../../../../assets/images/judges/judge.png";
+import { IJudge } from "./../type";
 
-export const JudgeItem = () => {
+export const JudgeItem: React.FC<IJudge> = ({
+  id,
+  name,
+  bio,
+  role,
+  imageUrl,
+}) => {
   return (
     <Styled.JudgeItemWrapper>
-      <Styled.JudgeItemImage src={JudgeImage} />
+      <Styled.JudgeItemImage src={imageUrl} />
       <Styled.JudgeItemBioWrapper>
-        <CustomBoldText>Viktoria Decker</CustomBoldText>
-        <CustomLightText size={14}>Senior Vice President,</CustomLightText>
-        <CustomLightText size={14}>Development & Production.</CustomLightText>
+        <CustomBoldText>
+          <Styled.CustomLinkNewTab target="_blank" href={bio}>
+            {name}
+          </Styled.CustomLinkNewTab>
+        </CustomBoldText>
+        <CustomLightText size={14}>{role}</CustomLightText>
       </Styled.JudgeItemBioWrapper>
     </Styled.JudgeItemWrapper>
   );

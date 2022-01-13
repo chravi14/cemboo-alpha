@@ -30,7 +30,7 @@ export const MobileMenu: React.FC<IMobileMenuProps> = ({
               About
             </Styled.MobileMenuLink>
           </Styled.MobileMenuLinkItem>
-          <Styled.MobileMenuLinkItem>
+          {/* <Styled.MobileMenuLinkItem>
             <Styled.MobileMenuLink
               to="roadmap"
               activeclassname="active"
@@ -39,7 +39,7 @@ export const MobileMenu: React.FC<IMobileMenuProps> = ({
             >
               Roadmap
             </Styled.MobileMenuLink>
-          </Styled.MobileMenuLinkItem>
+          </Styled.MobileMenuLinkItem> */}
         </Styled.MobileMenuLinksWrapper>
       </Styled.MobileMenuContent>
     </Styled.MobieMenuWrapper>
