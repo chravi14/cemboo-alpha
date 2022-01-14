@@ -15,9 +15,10 @@ export const LandingPage = () => {
         </Styled.SectionInnerContainer>
         <Styled.SectionInnerContainer className="description">
           <CustomLightText size={16} marginTop={16}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam.
+            Thank you for joining our competition’s live premiere!
+            Congratulations to our finalists, and our feature winner! All
+            screenwriters delivered excellent pitches this weekend for some
+            great works.
           </CustomLightText>
         </Styled.SectionInnerContainer>
         <Styled.SectionInnerContainer className="logo">

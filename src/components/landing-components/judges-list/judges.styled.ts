@@ -16,10 +16,4 @@ export const JudgesListWrapper = styled.div`
     grid-template-columns: repeat(2, 1fr);
     column-gap: 20px;
   }
-
-  @media only screen and (min-width: 960px) {
-    // max-height: 550px;
-    // height: 550px;
-    overflow: scroll;
-  }
 `;

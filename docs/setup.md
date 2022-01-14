@@ -8,3 +8,5 @@
 1. Background image
 2. Modal popup
 3. Footer
+
+https://bigendians.com/2021/07/11/manually-trigger-builds-on-aws-amplify/

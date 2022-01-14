@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { CustomHeader, CustomLightText, CustomSubHeader } from "../ui";
-import RoadmapImage from "./../../assets/images/roadmap.png";
-import RoadmapLineImage from "./../../assets/images/roadmap_line.png";
+import { CustomHeader } from "../ui";
+import RoadmapFullImage from "./../../assets/images/background/roadmap.png";
 
 export const RoadmapWrapper = styled.div`
   padding-top: 20px;
+  padding-bottom: 100px;
 `;
 
 export const RoadmapHeader = styled(CustomHeader)`
@@ -18,86 +18,27 @@ export const RoadmapHeader = styled(CustomHeader)`
   }
 `;
 
-export const RoadmapImageWrapper = styled.div`
+export const RoadmapLineBg = styled.div`
+  height: 1200px;
+  background: url(${RoadmapFullImage});
+  background-repeat: no-repeat;
+  margin-top: 50px;
   width: 100%;
-  margin: 0 auto;
-  padding-top: 70px;
+  background-position: top left;
+  position: absolute;
+  left: 50%;
+  transform: translate(-25%);
+`;
+
+export const RoadmapBgWrapper = styled.div`
   position: relative;
   text-align: center;
 `;
 
-export const RoadmapImageOne = styled.div`
-  background: url(${RoadmapImage});
-  width: 100%;
-  height: 335px;
-  background-repeat: no-repeat;
-  background-position: center;
+export const RoadmapContent = styled.div`
   position: absolute;
-  top: 75px;
-  left: 0;
-`;
-
-export const RoadmapImageTwo = styled.div`
-  background: url(${RoadmapLineImage});
-  width: 100%;
-  height: 700px;
-  background-repeat: no-repeat;
-  background-position: center top;
-  position: absolute;
-  top: 350px;
-  left: -160px;
-  position: relative;
-`;
-
-export const RoadmapFirstImage = styled.img`
-  text-align: center;
-`;
-
-export const RoadmapTextWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: 10px;
-  align-items: center;
-  margin: 24px 0;
-  &:last-of-type {
-    padding-bottom: 100px;
-  }
-
-  @media only screen and (min-width: 768px) {
-    padding: 50px;
-    width: 100%;
-    column-gap: 26px;
-    margin: 8px 0;
-  }
-
-  @media only screen and (min-width: 960px) {
-    padding: 50px;
-    width: 75%;
-    column-gap: 26px;
-    margin: 8px 0;
-  }
-`;
-
-export const RoadmapTextHeader = styled(CustomSubHeader)`
-  grid-column: 2/5;
-
-  @media only screen and (min-width: 768px) {
-    grid-column: 2/5;
-  }
-
-  @media only screen and (min-width: 960px) {
-    grid-column: 4/6;
-  }
-`;
-
-export const RoadmapText = styled(CustomLightText)`
-  grid-column: 6/12;
-  color: rgba(255, 255, 255, 1);
-  @media only screen and (min-width: 768px) {
-    grid-column: 5/13;
-  }
-
-  @media only screen and (min-width: 960px) {
-    grid-column: 6/13;
-  }
+  withd: 100%;
+  top: 800px;
+  left: 25%;
+  transform: translate(-25%);
 `;
