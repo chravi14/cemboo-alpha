@@ -39,7 +39,7 @@ export const RoadmapContainer = () => {
       <Styled.RoadmapContentContainer>
         <Styled.RoadmapContentMainWrapper>
           <Styled.RoadmapTextTitle>
-            A insight into our roadmap
+            An insight into our roadmap
           </Styled.RoadmapTextTitle>
           <Styled.RoadmapContentList>
             <Styled.RoadmapContentListItem>

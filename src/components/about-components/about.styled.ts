@@ -10,26 +10,53 @@ export const AboutHeroWrapper = styled.div`
   text-align: center;
   width: 100%;
   margin: 0 auto;
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 768px) and (max-width: 959px) {
     width: 75%;
   }
 
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 960px) and (max-width: 1023px) {
     padding: 20px;
     width: 65%;
+  }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    width: 65%;
+    margin: 0 auto;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 50%;
+    margin: 0 auto;
+  }
+`;
+
+export const AboutHeroTextWrapper = styled.div`
+  padding: 20px;
+  @media screen and (min-width: 960px) and (max-width: 1023px) {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 75%;
+    margin: 0 auto;
   }
 `;
 
 export const AboutHeroHeader = styled(CustomHeader)`
-  font-size: 40px;
+  font-size: 32px;
   line-height: 72px;
-  margin-bottom: 10px;
-  width: 75%;
-  margin: 0 auto;
-  @media screen and (min-width: 960px) {
+  margin: 10px 0;
+  width: 100%;
+  @media screen and (min-width: 960px) and (max-width: 1023px) {
     font-size: 64px;
     line-height: 72px;
     margin-bottom: 20px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    font-size: 64px;
+    line-height: 72px;
   }
 `;
 
@@ -44,8 +71,13 @@ export const AboutStatsWrapper = styled.div`
     grid-template-columns: repeat(4, 1fr);
   }
 
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 960px) and (max-width: 1023px) {
     row-gap: 45px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    font-size: 64px;
+    line-height: 72px;
   }
 `;
 
@@ -70,6 +102,7 @@ export const StatsYear = styled(CustomHeader)`
 
 export const StatsYearSubText = styled(CustomBoldText)`
   font-size: 16px;
+  text-align: center;
 `;
 
 export const StoryWrapper = styled.div`
@@ -78,7 +111,7 @@ export const StoryWrapper = styled.div`
   margin: 40px 0;
   padding-bottom: 48px;
 
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 960px) and (max-width: 1023px) {
     width: 75%;
     margin: 0 auto;
   }
@@ -89,7 +122,7 @@ export const StoryTitle = styled(CustomSubHeader)`
   line-height: 32px;
   margin-bottom: 10px;
 
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 960px) and (max-width: 1023px) {
     margin-bottom: 26px;
   }
 `;
@@ -106,13 +139,12 @@ export const StoryTextWrapper = styled.div`
     padding: 25px;
   }
 
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 960px) and (max-width: 1023px) {
     padding: 25px 50px;
   }
 `;
 
 export const StoryText = styled(CustomLightText)`
-  text-indent: 10px;
   text-align: justify;
   font-size: 16px;
   color: rgba(255, 255, 255, 1);
@@ -141,8 +173,16 @@ export const AboutContentWrapper = styled.div`
   grid-template-columns: repeat(12, 1fr);
   margin-top: 35px;
   align-items: center;
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 960px) and (max-width: 1023px) {
     padding: 30px;
+  }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    padding: 25px 0px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    padding: 30px 75px;
   }
 `;
 
@@ -152,25 +192,33 @@ export const AboutContentYearWrapper = styled.div`
     grid-column: 1/13;
   }
 
-  @media only screen and (min-width: 601px) and (max-width: 959px) {
+  @media only screen and (min-width: 601px) and (max-width: 1023px) {
     grid-column: 1/13;
   }
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    grid-column: 2/6;
+  }
+
+  @media only screen and (min-width: 1200px) {
     grid-column: 3/6;
   }
 `;
 
 export const AboutContentTextWrapper = styled.div`
-  @media only screen and (min-width: 960px) {
-    grid-column: 6/11;
-  }
-
-  @media only screen and (min-width: 601px) and (max-width: 959px) {
-    grid-column: 1/13;
-  }
-
   @media only screen and (max-width: 600px) {
     grid-column: 1/13;
+  }
+
+  @media only screen and (min-width: 601px) and (max-width: 1023px) {
+    grid-column: 1/13;
+  }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    grid-column: 6/12;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    grid-column: 6/12;
   }
 `;
 

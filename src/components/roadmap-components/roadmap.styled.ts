@@ -148,7 +148,6 @@ export const RoadmapContentContainer = styled.div`
 `;
 
 export const RoadmapContentMainWrapper = styled.div`
-  background: rgba(0, 0, 0, 0.5);
   padding: 2.5rem;
   border-radius: 15px;
 `;

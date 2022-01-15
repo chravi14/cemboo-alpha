@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { InnerContainer } from "../../components";
 
 export const LandingPageWrapper = styled.div`
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 1200px) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: 16px;
@@ -14,7 +14,10 @@ export const PlayerWrapper = styled.div`
   width: 100%;
   padding: 8px 0px;
 
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+  }
+
+  @media only screen and (min-width: 1200px) {
     grid-column: 1/9;
   }
 `;
@@ -23,7 +26,11 @@ export const EventInfo = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    padding-bottom: 40px;
+  }
+
+  @media only screen and (min-width: 1200px) {
     grid-column: 1/9;
     grid-row: 2/3;
     padding-bottom: 50px;
@@ -42,7 +49,7 @@ export const LogoImage = styled.img`
 export const SectionInnerContainer = styled(InnerContainer)`
   grid-column: 1/13;
 
-  @media only screen and (min-width: 700px) and (max-width: 960px) {
+  @media only screen and (min-width: 700px) and (max-width: 1023px) {
     &.title {
       grid-column: 1/8;
     }
@@ -56,7 +63,22 @@ export const SectionInnerContainer = styled(InnerContainer)`
     }
   }
 
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    &.title {
+      grid-column: 1/9;
+    }
+
+    &.description {
+      grid-column: 1/9;
+    }
+
+    &.logo {
+      grid-column: 9/13;
+      grid-row: 1/3;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
     &.title {
       grid-column: 1/11;
     }
@@ -72,7 +94,9 @@ export const SectionInnerContainer = styled(InnerContainer)`
   }
 `;
 export const JudgesContainer = styled(InnerContainer)`
-  @media only screen and (min-width: 960px) {
+  @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+  }
+  @media only screen and (min-width: 1200px) {
     grid-column: 9/13;
     grid-row: 1/5;
   }
