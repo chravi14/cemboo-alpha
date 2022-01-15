@@ -6,12 +6,14 @@ export const AboutContainer = () => {
     <>
       <InnerContainer>
         <Styled.AboutHeroWrapper>
-          <Styled.AboutHeroHeader>Hi, we’re Cemboo</Styled.AboutHeroHeader>
-          <CustomLightText size={18}>
-            Our mission is to empower content owners with the flexibility to
-            control, monetize and distribute their own digital media content
-            through values of quality, community and innovation.
-          </CustomLightText>
+          <Styled.AboutHeroHeader>Hi, we are Cemboo</Styled.AboutHeroHeader>
+          <Styled.AboutHeroTextWrapper>
+            <CustomLightText size={18}>
+              Our mission is to empower content owners with the flexibility to
+              control, monetize and distribute their own digital media content
+              through values of quality, community and innovation.
+            </CustomLightText>
+          </Styled.AboutHeroTextWrapper>
         </Styled.AboutHeroWrapper>
       </InnerContainer>
       <InnerContainer>

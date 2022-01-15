@@ -6,4 +6,5 @@ export const config = {
   S3_VIDEO_URL:
     "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/video.mp4",
   IS_AWS_IVS: true,
+  IS_PLAYER_ENABLED: false,
 };

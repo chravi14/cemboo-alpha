@@ -41,11 +41,15 @@ export const Player = () => {
 
   const previewImageSection = () => {
     return (
-      <Styled.PreviewWrapper onClick={() => setPlaying(true)}>
+      <Styled.PreviewWrapper
+        onClick={() => (config.IS_PLAYER_ENABLED ? setPlaying(true) : null)}
+      >
         <Styled.PreviewImg src="https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/poster.jpg" />
-        <Styled.PlayIconWrapper>
-          <Styled.PlayIcon className="fas fa-play" />
-        </Styled.PlayIconWrapper>
+        {config.IS_PLAYER_ENABLED && (
+          <Styled.PlayIconWrapper>
+            <Styled.PlayIcon className="fas fa-play" />
+          </Styled.PlayIconWrapper>
+        )}
       </Styled.PreviewWrapper>
     );
   };

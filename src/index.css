@@ -27,8 +27,14 @@ body {
       rgba(17, 18, 21, 0.6) 0%,
       rgba(17, 18, 21, 1) 100%
     ); */
-  background: url("./assets//images/background/background.jpg");
-  /* background-blend-mode: difference; */
+  background: url("./assets//images/background/background.jpg"),
+    radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(17, 18, 21, 0.6) 0%,
+      rgba(17, 18, 21, 1) 100%
+    );
+
+  background-blend-mode: darken;
   background-size: cover;
   background-position: center;
   /* background: url("./assets/images/background/landing_bg2.png"),
@@ -52,7 +58,7 @@ code {
     monospace;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 700px) and (max-width: 1023px) {
   body {
     /* background: url("./assets/images/background/landing_bg2.png"),
       url("./assets/images/background/landing_bg.png"),
@@ -61,19 +67,39 @@ code {
         rgba(17, 18, 21, 1) 0%,
         rgba(17, 18, 21, 1) 100%
       ); */
-    background: url("./assets//images/background/background.jpg");
-    /* background-blend-mode: difference; */
+    background: url("./assets//images/background/background.jpg"),
+      radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(17, 18, 21, 0.6) 0%,
+        rgba(17, 18, 21, 1) 100%
+      );
+
+    background-blend-mode: darken;
     background-size: cover;
     background-position: center;
   }
 }
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
   body {
     background: url("./assets//images/background/background.jpg"),
       radial-gradient(
         50% 50% at 50% 50%,
-        rgba(17, 18, 21, 1) 0%,
+        rgba(17, 18, 21, 0.6) 0%,
+        rgba(17, 18, 21, 1) 100%
+      );
+    background-blend-mode: difference;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  body {
+    background: url("./assets//images/background/background.jpg"),
+      radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(17, 18, 21, 0.6) 0%,
         rgba(17, 18, 21, 1) 100%
       );
     background-blend-mode: difference;
