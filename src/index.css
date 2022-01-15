@@ -20,13 +20,17 @@ body {
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("./assets/images/background/landing_bg2.png"),
+  /* background: url("./assets/images/background/landing_bg2.png"),
     url("./assets/images//background/landing_bg.png"),
     radial-gradient(
       50% 50% at 50% 50%,
       rgba(17, 18, 21, 0.6) 0%,
       rgba(17, 18, 21, 1) 100%
-    );
+    ); */
+  background: url("./assets//images/background/background.jpg");
+  /* background-blend-mode: difference; */
+  background-size: cover;
+  background-position: center;
   /* background: url("./assets/images/background/landing_bg2.png"),
     url("./assets/images/background/landing_bg.png"),
     radial-gradient(
@@ -34,9 +38,9 @@ body {
       rgba(17, 18, 21, 0.6) 0%,
       rgba(17, 18, 21, 1) 100%
     ); */
-  background-blend-mode: screen, darken;
-  background-size: 100% 100%;
-  background-position: center center;
+  /* background-blend-mode: screen, darken; */
+  /* background-size: 100% 100%; */
+  /* background-position: center center; */
   background-origin: border-box;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -50,28 +54,127 @@ code {
 
 @media only screen and (min-width: 700px) {
   body {
-    background: url("./assets/images/background/landing_bg2.png"),
+    /* background: url("./assets/images/background/landing_bg2.png"),
       url("./assets/images/background/landing_bg.png"),
+      radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(17, 18, 21, 1) 0%,
+        rgba(17, 18, 21, 1) 100%
+      ); */
+    background: url("./assets//images/background/background.jpg");
+    /* background-blend-mode: difference; */
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  body {
+    background: url("./assets//images/background/background.jpg"),
       radial-gradient(
         50% 50% at 50% 50%,
         rgba(17, 18, 21, 1) 0%,
         rgba(17, 18, 21, 1) 100%
       );
     background-blend-mode: difference;
+    background-size: cover;
+    background-position: center;
+  }
+}
+/* 
+@mixin tablet-and-up {
+  @media screen and (min-width: 769px) {
+    @content;
+  }
+}
+@mixin mobile-and-up {
+  @media screen and (min-width: 601px) {
+    @content;
+  }
+}
+@mixin tablet-and-down {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin mobile-only {
+  @media screen and (max-width: 600px) {
+    @content;
   }
 }
 
-@media only screen and (min-width: 960px) {
-  body {
-    background: url("./assets/images/background/landing_bg2.png"),
-      url("./assets/images/background/landing_bg.png"),
-      radial-gradient(
-        50% 50% at 50% 50%,
-        rgba(17, 18, 21, 1) 0%,
-        rgba(17, 18, 21, 1) 50%,
-        rgba(17, 18, 21, 1) 100%
-      );
-    background-blend-mode: darken, screen;
-    background-size: cover;
+ul,
+li {
+  list-style: none;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  background: linear-gradient(45deg, #209cff, #68e0cf);
+  padding: 3rem 0;
+}
+.wrapper {
+  background: #eaf6ff;
+  padding: 2rem;
+  border-radius: 15px;
+}
+h1 {
+  font-size: 1.1rem;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+.sessions {
+  margin-top: 2rem;
+  border-radius: 12px;
+  position: relative;
+}
+li {
+  padding-bottom: 1.5rem;
+  border-left: 1px solid #abaaed;
+  position: relative;
+  padding-left: 20px;
+  margin-left: 10px;
+  &:last-child {
+    border: 0px;
+    padding-bottom: 0;
+  }
+  &:before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: 1px solid #4e5ed3;
+    box-shadow: 3px 3px 0px #bab5f8;
+    box-shadow: 3px 3px 0px #bab5f8;
+    border-radius: 50%;
+    position: absolute;
+    left: -10px;
+    top: 0px;
   }
 }
+.time {
+  color: #2a2839;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+
+  @media screen and (min-width: 601px) {
+    font-size: 0.9rem;
+  }
+  @media screen and (max-width: 600px) {
+    margin-bottom: 0.3rem;
+    font-size: 0.85rem;
+  }
+}
+p {
+  color: #4f4f4f;
+  font-family: sans-serif;
+  line-height: 1.5;
+  margin-top: 0.4rem;
+  @media screen and (max-width: 600px) {
+    font-size: 0.9rem;
+  }
+} */

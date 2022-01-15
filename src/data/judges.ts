@@ -7,7 +7,7 @@ export const JUDGES: IJudge[] = [
     bio: "https://www.imdb.com/name/nm3435578/?ref_=fn_al_nm_1",
     role: "Board of Directors Council for Retail and Sales at DeSales University",
     imageUrl:
-      "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/02.png",
+      "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/01.png",
   },
   {
     id: 2,
@@ -22,6 +22,14 @@ export const JUDGES: IJudge[] = [
     name: "Johnny Ray Gill",
     bio: "https://www.imdb.com/name/nm3331401/?ref_=fn_al_nm_1",
     role: "Actor and producer, former Haydenfilms Online Film Festival winner",
+    imageUrl:
+      "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/04.png",
+  },
+  {
+    id: 7,
+    name: "Hayden Craddolph",
+    bio: "https://www.imdb.com/search/title/?companies=co0290198",
+    role: "Executive Director and Founder of Haydenfilms LLC and Haydenfilms Institute.",
     imageUrl:
       "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/03.png",
   },
@@ -47,14 +55,6 @@ export const JUDGES: IJudge[] = [
     bio: "https://www.imdb.com/name/nm0107721/?ref_=fn_al_nm_1",
     role: "Producer and Director",
     imageUrl:
-      "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/04.png",
-  },
-  {
-    id: 7,
-    name: "Hayden Craddolph",
-    bio: "https://www.imdb.com/search/title/?companies=co0290198",
-    role: "Executive Director and Founder of Haydenfilms LLC and Haydenfilms Institute.",
-    imageUrl:
-      "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/01.png",
+      "https://cemboo-thumbnail-images.s3.amazonaws.com/cemboo-alpha/02.png",
   },
 ];
