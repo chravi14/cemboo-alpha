@@ -1,3 +1,5 @@
 import styled from "styled-components";
 
-export const AboutPageWrapper = styled.div``;
+export const AboutPageWrapper = styled.div`
+  padding-bottom: 25px;
+`;
