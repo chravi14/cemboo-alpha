@@ -1,12 +1,16 @@
 .main {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
+  color: #fff;
+}
+
+#coming-soon.main {
   height: 100vh;
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0px;
 }

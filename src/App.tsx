@@ -1,14 +1,37 @@
-import React from "react";
+import { Routes, Route } from "react-router-dom";
+
+import {
+  Footer,
+  HeroSectionContainer,
+  NavigationContainer,
+} from "./components";
+import { AboutPage, LandingPage, RoadmapPage } from "./pages";
+import { config } from "./config/config";
 import "./App.css";
-import { HeroSectionContainer } from "./components/hero-section/HeroSection.container";
-import { Footer } from "./components/Footer/Footer.container";
 
 function App() {
+  const { isComingSoon } = config;
   return (
     <div className="container">
-      <div className="main">
-        <HeroSectionContainer />
-      </div>
+      {!isComingSoon && (
+        <>
+          <NavigationContainer />
+          <div className="main">
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="roadmap" element={<RoadmapPage />} />
+            </Routes>
+          </div>
+        </>
+      )}
+
+      {isComingSoon && (
+        <div className="main" id="coming-soon">
+          <HeroSectionContainer />
+        </div>
+      )}
+
       <div className="footer">
         <Footer />
       </div>

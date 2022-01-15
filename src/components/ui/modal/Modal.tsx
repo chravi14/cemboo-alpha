@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import isEmail from "validator/lib/isEmail";
-import { Input } from "../input/input.container";
+
+import { TextInput } from "../input";
+import { Loader } from "../loader";
 
 import * as Styled from "./Modal.styled";
-import { Loader } from "../loader/loader";
 
 interface IProps {
   show: boolean;
@@ -155,7 +156,7 @@ export const Modal: React.FC<IProps> = ({ show, closeHandler }) => {
               <Styled.SignupFormWrapper>
                 <Styled.FormRow>
                   <Styled.FormCol>
-                    <Input
+                    <TextInput
                       placeholder="First Name"
                       value={userData.firstname}
                       name="firstname"
@@ -163,7 +164,7 @@ export const Modal: React.FC<IProps> = ({ show, closeHandler }) => {
                     />
                   </Styled.FormCol>
                   <Styled.FormCol>
-                    <Input
+                    <TextInput
                       placeholder="Last Name"
                       name="lastname"
                       value={userData.lastname}
@@ -172,7 +173,7 @@ export const Modal: React.FC<IProps> = ({ show, closeHandler }) => {
                   </Styled.FormCol>
                 </Styled.FormRow>
                 <Styled.FormRow>
-                  <Input
+                  <TextInput
                     placeholder="Email"
                     name="email"
                     type="email"

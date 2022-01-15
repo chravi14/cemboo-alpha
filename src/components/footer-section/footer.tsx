@@ -1,9 +1,9 @@
 import React from "react";
-import LinkedInIcon from "./../../assets/linkedin.png";
-import TwitterIcon from "./../../assets/twitter.png";
-import InstagramIcon from "./../../assets/instagram.png";
+import LinkedInIcon from "./../../assets/images/icons/linkedin.png";
+import TwitterIcon from "./../../assets/images/icons/twitter.png";
+import InstagramIcon from "./../../assets/images/icons/instagram.png";
 
-import * as Styled from "./Footer.styled";
+import * as Styled from "./footer.styled";
 
 export const Footer = () => {
   return (
