@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
+import { ROUTEPATHS } from "./libs";
 
 import { Footer, NavigationContainer } from "./components";
-import { AboutPage, LandingPage, LoginPage, RoadmapPage } from "./pages";
+import { AboutPage, LandingPage, RegistrationPage, RoadmapPage } from "./pages";
 import "./App.css";
 
 function App() {
@@ -10,9 +11,9 @@ function App() {
       <NavigationContainer />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="roadmap" element={<RoadmapPage />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route path={ROUTEPATHS.ABOUT} element={<AboutPage />} />
+        <Route path={ROUTEPATHS.ROADMAP} element={<RoadmapPage />} />
+        <Route path={ROUTEPATHS.REGISTER} element={<RegistrationPage />} />
       </Routes>
       <div className="footer">
         <Footer />

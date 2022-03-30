@@ -2,6 +2,7 @@
 
 :root {
   --color-primary: #b7f84d;
+  --bs-primary-rgb: 183, 248, 77;
 }
 
 @import "bootstrap/dist/css/bootstrap.min.css";
@@ -232,3 +233,34 @@ p {
     font-size: 0.9rem;
   }
 } */
+
+.btn-success {
+  background: linear-gradient(
+      103.07deg,
+      rgba(183, 248, 77, 0.2) -38.19%,
+      rgba(141, 198, 63, 0.2) 102.21%
+    ),
+    #0b0b0b;
+  border-color: rgba(141, 198, 63, 0.5);
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success:checked {
+  background: linear-gradient(
+    103.07deg,
+    rgba(183, 248, 77, 0.2) -38.19%,
+    rgba(141, 198, 63, 0.2) 102.21%
+  );
+  border-color: rgba(141, 198, 63, 0.5);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+  transform: scale(0.75) translateY(-0.5rem) translateX(0.15rem);
+}
