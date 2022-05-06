@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Button as BaseButton } from "react-bootstrap";
+import { Button as BaseButton, Dropdown } from "react-bootstrap";
 import { colors } from "../../themes";
 
 export const Button = styled(BaseButton)`
@@ -17,7 +17,7 @@ export const Button = styled(BaseButton)`
 export const DefaultButton = styled.button<any>`
   background-color:transparent;
   border:1px solid transparent;
-  text-align:center;
+  text-align:${({ textAlign }) => (textAlign ? textAlign : "center")};
   text-decoration:none;
   vertical-align:middle;
   width: 100%;
@@ -33,6 +33,12 @@ export const DefaultButton = styled.button<any>`
   &:disabled {
     pointer-events:none;
   }
+
+  ${({ size }) =>
+    size === "lg" &&
+    css`
+      padding: 0.475rem 0.75rem;
+    `}
 
   ${({ variant }) =>
     variant === "primary" &&
@@ -53,3 +59,60 @@ export const DefaultButton = styled.button<any>`
         color: ${colors.text.disabled};
       `}
 `;
+
+export const DropdownWrapper = styled(Dropdown)`
+  width: 100%;
+  &:focus,
+  &:active,
+  &:focus-visible {
+    outline: none;
+    border: 1px solid transparent;
+  }
+`;
+
+export const DropdownToggle = styled(Dropdown.Toggle)<any>`
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  padding: 10px 20px;
+
+  &::after {
+    float: right;
+    margin-top: 12px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+    color: ${colors.text.green};
+  }
+
+  ${({ variant }) =>
+    variant === "primary" &&
+    css`
+      background: ${colors.background.linearGradient};
+      border-color: ${colors.background.linearGradient};
+      color: ${colors.text.green};
+
+      &:hover {
+        background: ${colors.background.darkGradient};
+
+      }
+
+      &:focus, &:active, &:focus-visible {
+        background: ${colors.background.linearGradient};
+        border-color: ${colors.background.linearGradient};
+        color: ${colors.text.green};
+        
+
+        &:hover {
+          background: ${colors.background.darkGradient};
+        }
+    `}
+`;
+
+export const DropdownMenu = styled(Dropdown.Menu)``;

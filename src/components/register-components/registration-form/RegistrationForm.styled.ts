@@ -7,7 +7,7 @@ export const RegistrationWrapper = styled.div`
   padding: 10px 0;
 `;
 
-export const RegitsrationFormWrapper = styled.div`
+export const RegistrationFormWrapper = styled.div`
   margin-top: 20px;
   padding: 10px 0;
 `;

@@ -6,52 +6,51 @@ import { RegistrationSteps } from "../registration-steps";
 import * as Styled from "./RegistrationForm.styled";
 
 export const RegistrationForm = () => {
-  const [userDetails, setUserDetails] = React.useState({
+  const [isDisabled, setIsDisabled] = React.useState(true);
+  const [regUserDetails, setRegUserDetails] = React.useState({
     name: "",
     email: "",
     phoneNumber: "",
     password: "",
   });
 
-  const [isDisabled, setIsDisabled] = React.useState(true);
-
-  const validateUserDetails = React.useCallback(() => {
-    console.log(userDetails);
+  const validateRegUserDetails = React.useCallback(() => {
     if (
-      userDetails.name &&
-      userDetails.email &&
-      userDetails.password &&
-      userDetails.phoneNumber
+      regUserDetails.name &&
+      regUserDetails.email &&
+      regUserDetails.password &&
+      regUserDetails.phoneNumber
     ) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [userDetails]);
+  }, [regUserDetails]);
 
   React.useEffect(() => {
-    validateUserDetails();
-  }, [validateUserDetails, userDetails]);
+    validateRegUserDetails();
+  }, [validateRegUserDetails]);
 
   const handleInputChange = React.useCallback(
     (event) => {
-      setUserDetails({
-        ...userDetails,
+      setRegUserDetails({
+        ...regUserDetails,
         [event.target.name]: event.target.value,
       });
     },
-    [userDetails]
+    [regUserDetails]
   );
 
   return (
     <Styled.RegistrationWrapper>
       <RegistrationSteps />
-      <Styled.RegitsrationFormWrapper>
+      <Styled.RegistrationFormWrapper>
         <Styled.RegistrationFormHeader>
           Join Cemboo
         </Styled.RegistrationFormHeader>
         <Styled.LoginText>
-          Already have an account? <Styled.LoginLink>Log In</Styled.LoginLink>
+          Already have an account?{" "}
+          <Styled.LoginLink href="/login">Log In</Styled.LoginLink>
         </Styled.LoginText>
         <Styled.RegistrationForm autoComplete="off">
           <Styled.RegisterFormRow>
@@ -60,7 +59,7 @@ export const RegistrationForm = () => {
                 label="Name/Organization"
                 placeholder="Name/Organization"
                 controlId="name"
-                value={userDetails.name}
+                value={regUserDetails.name}
                 onChangeHandler={handleInputChange}
               />
             </Col>
@@ -72,7 +71,7 @@ export const RegistrationForm = () => {
                 type="email"
                 placeholder="Email"
                 controlId="email"
-                value={userDetails.email}
+                value={regUserDetails.email}
                 onChangeHandler={handleInputChange}
               />
             </Col>
@@ -85,7 +84,7 @@ export const RegistrationForm = () => {
                 type="password"
                 placeholder="Password"
                 controlId="password"
-                value={userDetails.password}
+                value={regUserDetails.password}
                 onChangeHandler={handleInputChange}
               />
             </Col>
@@ -98,7 +97,7 @@ export const RegistrationForm = () => {
                 type="text"
                 placeholder="Phone Number"
                 controlId="phoneNumber"
-                value={userDetails.phoneNumber}
+                value={regUserDetails.phoneNumber}
                 onChangeHandler={handleInputChange}
               />
             </Col>
@@ -126,7 +125,7 @@ export const RegistrationForm = () => {
             </Col>
           </Styled.RegisterFormRow>
         </Styled.RegistrationForm>
-      </Styled.RegitsrationFormWrapper>
+      </Styled.RegistrationFormWrapper>
     </Styled.RegistrationWrapper>
   );
 };

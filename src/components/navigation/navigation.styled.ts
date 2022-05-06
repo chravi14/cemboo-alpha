@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { colors } from "../../libs";
 
 export const NavigationWrapper = styled.nav`
   display: flex;
@@ -70,3 +71,35 @@ export const MobileMenuIconWrapper = styled.div`
 export const MobileMenuIcon = styled.img`
   width: 30px;
 `;
+
+export const SearchBarWrapper = styled.div`
+  position: relative;
+  width: 500px;
+`;
+
+export const SearchInput = styled.input`
+  width: 100%;
+  border-radius: 20px;
+  padding: 8px 50px;
+  background: #0c0c0c;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const SearchIcon = styled.img`
+  position: absolute;
+  left: 25px;
+  top: 14px;
+`;
+
+export const UserMenuIconsWrapper = styled.div``;
+
+export const NotificationsIcon = styled.i`
+  color: ${colors.text.green};
+`;
+
+export const ProfileIcon = styled.img``;
