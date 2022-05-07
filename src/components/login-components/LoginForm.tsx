@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BaseButton, TextInput } from "./../../libs";
+import { BaseButton, FloatingTextInput as TextInput } from "./../../libs";
 
 import * as Styled from "./LoginForm.styled";
 

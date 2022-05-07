@@ -5,8 +5,8 @@ import { colors } from "../../../themes";
 
 export const MenuItemContainer = styled(BaseContainer)`
   border-left: 2px solid transparent;
-  ${({ active }) =>
-    active &&
+  ${({ isactive }) =>
+    isactive &&
     css`
       border-color: ${colors.background.green};
     `}

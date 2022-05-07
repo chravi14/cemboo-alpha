@@ -36,6 +36,14 @@ export const types = {
             font-size: 18px;
         }
     `,
+    small: `
+        ${defaultStyles}
+        font-weight: 700;
+        font-size: 16px;
+        @media screen and (max-width: 768px) {
+            font-size: 14px;
+        }
+    `,
   },
   body: {
     title: `
@@ -76,6 +84,14 @@ export const types = {
         font-size: 16px;
         @media screen and (max-width: 768px) {
             font-size: 14px;
+        }
+    `,
+    small: `
+        ${defaultStyles}
+        font-weight: 400;
+        font-size: 12px;
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
         }
     `,
   },

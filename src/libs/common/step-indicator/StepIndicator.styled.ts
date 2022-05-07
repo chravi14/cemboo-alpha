@@ -32,6 +32,14 @@ export const StepButton = styled.div<any>`
 
 export const Badge = styled(BsBadge)<any>`
   color: #0b0b0b;
+  ${({ direction }) =>
+    direction === "row"
+      ? css`
+          margin-right: 10px;
+        `
+      : css`
+          margin-bottom: 10px;
+        `}
 `;
 
 export const StepButtonText = styled.span<any>`

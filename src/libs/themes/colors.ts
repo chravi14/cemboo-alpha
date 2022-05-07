@@ -21,6 +21,8 @@ export const colors = {
     mediumWhite: "#F1F1F1",
     disabled: "rgba(255, 255, 255, 0.5)",
     gradient: "linear-gradient(270.35deg, #B7F84D 0.39%, #FFFFFF 102.68%)",
+    textGradient:
+      "-webkit-linear-gradient(270.35deg,#b7f84d 0.39%,#ffffff 102.68%);",
     black: "#121419",
     error: "#FF3D3D",
   },
