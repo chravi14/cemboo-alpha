@@ -2,6 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Logo from "./../../assets/images/logos/logo.png";
 import MobileMenuIcon from "./../../assets/images/icons/menu.png";
+import SearchIcon from "./../../assets/images/icons/search.svg";
+
 import { MobileMenu } from "./mobile-menu";
 
 import * as Styled from "./navigation.styled";
@@ -15,7 +17,10 @@ export const Navigation = () => {
   const [showSignInModal, setShowSignInModal] = React.useState(false);
   const showNotifyMe = isComingSoon;
 
-  const shouldDisplayMenuLinks = location.pathname !== ROUTEPATHS.REGISTER;
+  const shouldDisplayMenuLinks =
+    location.pathname !== ROUTEPATHS.REGISTER &&
+    location.pathname !== ROUTEPATHS.LOGIN;
+  const isDashboardPage = location.pathname === ROUTEPATHS.DASHBOARD;
 
   const handleGetStartedClick = () => {
     replaceLocation(ROUTEPATHS.REGISTER);
@@ -28,7 +33,7 @@ export const Navigation = () => {
           <Styled.LogoImage src={Logo} />
         </Styled.LogoLink>
       </Styled.LogoWrapper>
-      {shouldDisplayMenuLinks && (
+      {shouldDisplayMenuLinks && !isDashboardPage && (
         <Styled.NavLeftLinksWrapper>
           <Styled.NavLinkItem>
             <Styled.StyledNavLink
@@ -50,7 +55,7 @@ export const Navigation = () => {
           </Styled.NavLinkItem>
         </Styled.NavLeftLinksWrapper>
       )}
-      {shouldDisplayMenuLinks && (
+      {shouldDisplayMenuLinks && !isDashboardPage && (
         <Styled.NavRightLinksWrapper>
           {showNotifyMe ? (
             <Button
@@ -65,6 +70,23 @@ export const Navigation = () => {
           )}
         </Styled.NavRightLinksWrapper>
       )}
+      {isDashboardPage && (
+        <>
+          <Styled.SearchBarWrapper>
+            <Styled.SearchInput
+              name="search"
+              type="text"
+              placeholder="Search your library"
+            />
+            <Styled.SearchIcon src={SearchIcon} />
+          </Styled.SearchBarWrapper>
+          <Styled.UserMenuIconsWrapper>
+            <Styled.NotificationsIcon className="fas fa-bell"></Styled.NotificationsIcon>
+            <Styled.ProfileIcon />
+          </Styled.UserMenuIconsWrapper>
+        </>
+      )}
+
       <Styled.MobileMenuIconWrapper>
         <Styled.MobileMenuIcon
           src={MobileMenuIcon}

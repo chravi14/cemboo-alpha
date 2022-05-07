@@ -7,3 +7,5 @@ export { NavigationContainer } from "./navigation";
 export { RoadmapContainer } from "./roadmap-components";
 export { Button, InnerContainer, TextInput, Loader, Modal } from "./ui";
 export { RegistrationForm, RegistrationSteps } from "./register-components";
+export { LoginForm } from "./login-components";
+export { DragAndDropZone } from "./drag-drop-zone";

@@ -3,17 +3,17 @@ import { Row, Col } from "react-bootstrap";
 
 import { colors, OuterContainer } from "../../libs";
 
-export const LoginPageContainer = styled(OuterContainer)`
+export const RegistrationPageContainer = styled(OuterContainer)`
   background-color: ${colors.background.black};
   padding: 0 15px;
-  height: 90vh;
+  min-height: 100vh;
 `;
 
-export const LoginPageRow = styled(Row)``;
+export const RegistrationPageRow = styled(Row)``;
 
 export const PackageInfoCol = styled(Col)``;
 
 export const RegistrationCol = styled(Col)`
   background-color: ${colors.background.lightBlack};
-  height: 90vh;
+  height: 100vh;
 `;

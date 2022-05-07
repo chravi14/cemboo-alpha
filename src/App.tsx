@@ -1,23 +1,36 @@
 import { Routes, Route } from "react-router-dom";
 import { ROUTEPATHS } from "./libs";
 
+import { useNavigation } from "./behavioral";
 import { Footer, NavigationContainer } from "./components";
-import { AboutPage, LandingPage, RegistrationPage, RoadmapPage } from "./pages";
+import {
+  AboutPage,
+  DashboardPage,
+  LandingPage,
+  LoginPage,
+  RegistrationPage,
+  RoadmapPage,
+} from "./pages";
 import "./App.css";
 
 function App() {
+  const showNavigation = useNavigation();
   return (
     <>
-      <NavigationContainer />
+      {showNavigation && <NavigationContainer />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path={ROUTEPATHS.ABOUT} element={<AboutPage />} />
         <Route path={ROUTEPATHS.ROADMAP} element={<RoadmapPage />} />
         <Route path={ROUTEPATHS.REGISTER} element={<RegistrationPage />} />
+        <Route path={ROUTEPATHS.LOGIN} element={<LoginPage />} />
+        <Route path={ROUTEPATHS.DASHBOARD} element={<DashboardPage />} />
       </Routes>
-      <div className="footer">
-        <Footer />
-      </div>
+      {showNavigation && (
+        <div className="footer">
+          <Footer />
+        </div>
+      )}
     </>
   );
 }

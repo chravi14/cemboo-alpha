@@ -11,6 +11,7 @@ export const colors = {
     linearGradient:
       "linear-gradient(103.07deg, rgba(183, 248, 77, 0.2) -38.19%, rgba(141, 198, 63, 0.2) 102.21%)",
     lightWhite: "rgba(255, 255, 255, 0.2)",
+    brown: "#303030",
   },
   text: {
     green: "#B7F84D",

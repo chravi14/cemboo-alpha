@@ -3,6 +3,7 @@ export const ROUTEPATHS = {
   LOGIN: "/login",
   REGISTER: "/register",
   ROADMAP: "/roadmap",
+  DASHBOARD: "/dashboard",
 };
 
 export const isComingSoon = false;
