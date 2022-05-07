@@ -135,6 +135,7 @@ export const LanguageDetails = () => {
             <Col>
               <DragAndDropZone
                 showSmallImage
+                textAlign="left"
                 direction="horizontal"
                 acceptedFileType=".srt"
                 onDropHandler={handleOnDrop}

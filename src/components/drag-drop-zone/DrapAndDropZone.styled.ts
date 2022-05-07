@@ -22,7 +22,7 @@ export const DragAndDropZoneWrapper = styled.div<any>`
 `;
 
 export const DragAndDropZoneTextWrapper = styled(Stack)<any>`
-  text-align: center;
+  text-align: ${({ textAlign }) => textAlign};
 `;
 
 export const DragAndDropZoneText = styled.span`

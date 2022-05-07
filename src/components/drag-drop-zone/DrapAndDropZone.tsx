@@ -25,6 +25,8 @@ interface IProps {
   onDropHandler: (files: File[]) => void;
   direction?: "horizontal" | "vertical";
   showSmallImage?: boolean;
+  textAlign?: "center" | "left";
+  centerContent?: boolean;
 }
 
 export const DragAndDropZone: React.FC<IProps> = ({
@@ -33,6 +35,8 @@ export const DragAndDropZone: React.FC<IProps> = ({
   onDropHandler,
   direction = "horizontal",
   showSmallImage = false,
+  centerContent = false,
+  textAlign = "center",
 }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -67,9 +71,10 @@ export const DragAndDropZone: React.FC<IProps> = ({
     <Styled.DragAndDropZoneWrapper {...getRootProps({ style })}>
       <input {...getInputProps()} />
       <Styled.DragAndDropZoneTextWrapper
+        textAlign={textAlign}
         direction={direction}
         gap={3}
-        className={!showSmallImage ? "col-md-5 mx-auto" : ""}
+        className={centerContent ? "col-md-5 mx-auto" : ""}
       >
         <Image
           src={showSmallImage ? SmallDrapAndDropImage : DragAndDropImage}

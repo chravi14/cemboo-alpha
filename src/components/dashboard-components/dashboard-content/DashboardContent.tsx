@@ -30,6 +30,7 @@ export const DashboardContent: React.FC = () => {
         acceptedFileType="image/jpeg, image/png"
         onDropHandler={handleOnDrop}
         direction="vertical"
+        centerContent
         dropMessageText="Drag and drop or click to upload a movie"
       />
       <UploadModal show={showUploadModal} onHide={onHideHandler} />

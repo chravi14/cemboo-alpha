@@ -4,6 +4,8 @@ import { UploadPreview } from "./upload-preview";
 import { CastDetails } from "./cast";
 import { DetailsSection } from "./details";
 import { LanguageDetails } from "./language-and-cc";
+import { SponsorDetails } from "./sponsors";
+import { VisibilityDetails } from "./visibility";
 
 import { ContentTypes } from "./../types";
 import * as Styled from "./UploadModalBody.styled";
@@ -19,8 +21,8 @@ export const UploadModalBody: React.FC<IUploadModalBodyProps> = ({
     [ContentTypes.UPLOAD_DETAILS]: <DetailsSection />,
     [ContentTypes.UPLOAD_LANGUAGE_CC]: <LanguageDetails />,
     [ContentTypes.UPLOAD_CAST]: <CastDetails />,
-    [ContentTypes.UPLOAD_SPONSORS]: <h1>Sponsor Details</h1>,
-    [ContentTypes.UPLOAD_VISIBILITY]: <h1>Publish Details</h1>,
+    [ContentTypes.UPLOAD_SPONSORS]: <SponsorDetails />,
+    [ContentTypes.UPLOAD_VISIBILITY]: <VisibilityDetails />,
   };
 
   return (
