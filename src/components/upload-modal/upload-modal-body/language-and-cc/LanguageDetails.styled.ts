@@ -17,7 +17,7 @@ export const FormFieldRow = styled(Row)`
 `;
 
 export const HelpText = styled.p`
-  ${types.body.normal};
+  ${types.body.small};
   color: ${colors.text.mediumWhite};
   margin: 5px 0;
 `;
