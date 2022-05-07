@@ -1,17 +1,18 @@
 import React from "react";
 
 import { HeaderLogo } from "../../../libs";
+import { ContentTypes } from "../types";
 import { UploadSteps } from "./upload-steps";
 
 import * as Styled from "./UploadModalHeader.styled";
 
 interface IUploadModalHeaderProps {
-  currentStep?: number;
-  onStepClick: (selectedStepNumber: number) => void;
+  contentType?: ContentTypes;
+  onStepClick: (contentType: ContentTypes) => void;
 }
 
 const UploadModalHeaderContent: React.FC<IUploadModalHeaderProps> = ({
-  currentStep,
+  contentType,
   onStepClick,
 }) => {
   return (
@@ -21,7 +22,7 @@ const UploadModalHeaderContent: React.FC<IUploadModalHeaderProps> = ({
           <HeaderLogo />
         </Styled.UploadModalHeaderLogoCol>
         <Styled.UploadModalHeaderStepsCol md={10}>
-          <UploadSteps onStepClick={onStepClick} currentStep={currentStep} />
+          <UploadSteps onStepClick={onStepClick} contentType={contentType} />
         </Styled.UploadModalHeaderStepsCol>
       </Styled.UploadModalHeaderRow>
     </Styled.UploadModalHeaderWrapper>
@@ -30,13 +31,13 @@ const UploadModalHeaderContent: React.FC<IUploadModalHeaderProps> = ({
 
 export const UploadModalHeader: React.FC<IUploadModalHeaderProps> = ({
   onStepClick,
-  currentStep = 1,
+  contentType = ContentTypes.UPLOAD_DETAILS,
 }) => {
   return (
     <Styled.ModalHeader closeButton closeVariant="white">
       <Styled.ModalTitle>
         <UploadModalHeaderContent
-          currentStep={currentStep}
+          contentType={contentType}
           onStepClick={onStepClick}
         />
       </Styled.ModalTitle>

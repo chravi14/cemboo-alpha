@@ -4,9 +4,7 @@ import { FullScreenModal } from "../../libs";
 
 import { UploadModalHeader } from "./upload-modal-header";
 import { UploadModalBody } from "./upload-modal-body";
-
-import * as Styled from "./UploadModal.styled";
-import { CONTENT_TYPE } from "./upload-modal-body/constants";
+import { ContentTypes } from "./types";
 
 interface IUploadModalProps {
   show?: boolean;
@@ -14,23 +12,36 @@ interface IUploadModalProps {
 }
 
 export const UploadModal: React.FC<IUploadModalProps> = ({ onHide, show }) => {
-  const [currentStep, setCurrentStep] = React.useState(1);
+  const [contentType, setContentType] = React.useState<ContentTypes>(
+    ContentTypes.UPLOAD_DETAILS
+  );
 
-  const handleStepBtnClick = React.useCallback((selectedStepNumber) => {
-    setCurrentStep(selectedStepNumber);
-  }, []);
+  const contentTypeChangeHandler = React.useCallback(
+    (selectedContentType: ContentTypes) => {
+      setContentType(selectedContentType);
+      console.log("Clicked", selectedContentType);
+    },
+    []
+  );
+
+  const handleModalHide = React.useCallback(() => {
+    if (onHide) {
+      onHide();
+    }
+    setContentType(ContentTypes.UPLOAD_DETAILS);
+  }, [onHide]);
 
   return (
     <FullScreenModal
       show={show}
-      onHide={onHide}
+      onHide={handleModalHide}
       header={
         <UploadModalHeader
-          onStepClick={handleStepBtnClick}
-          currentStep={currentStep}
+          onStepClick={contentTypeChangeHandler}
+          contentType={contentType}
         />
       }
-      body={<UploadModalBody contentType={CONTENT_TYPE.UPLOAD_DETAILS} />}
+      body={<UploadModalBody contentType={contentType} />}
     ></FullScreenModal>
   );
 };

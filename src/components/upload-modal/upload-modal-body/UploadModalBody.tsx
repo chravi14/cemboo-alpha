@@ -1,24 +1,26 @@
 import React from "react";
 import { UploadPreview } from "./upload-preview";
 
+import { CastDetails } from "./cast";
 import { DetailsSection } from "./details";
+import { LanguageDetails } from "./language-and-cc";
 
-import { CONTENT_TYPE } from "./constants";
+import { ContentTypes } from "./../types";
 import * as Styled from "./UploadModalBody.styled";
 
 interface IUploadModalBodyProps {
-  contentType?: CONTENT_TYPE;
+  contentType?: ContentTypes;
 }
 
 export const UploadModalBody: React.FC<IUploadModalBodyProps> = ({
-  contentType = CONTENT_TYPE.UPLOAD_DETAILS,
+  contentType = ContentTypes.UPLOAD_DETAILS,
 }) => {
-  const body: { [key in CONTENT_TYPE]: React.ReactNode } = {
-    [CONTENT_TYPE.UPLOAD_DETAILS]: <DetailsSection />,
-    [CONTENT_TYPE.UPLOAD_LANGUAGE_CC]: <h1>Lang/CC Details</h1>,
-    [CONTENT_TYPE.UPLOAD_CAST]: <h1>Cast Details</h1>,
-    [CONTENT_TYPE.UPLOAD_SPONSORS]: <h1>Sponsor Details</h1>,
-    [CONTENT_TYPE.UPLOAD_VISIBILITY]: <h1>Publish Details</h1>,
+  const body: { [key in ContentTypes]: React.ReactNode } = {
+    [ContentTypes.UPLOAD_DETAILS]: <DetailsSection />,
+    [ContentTypes.UPLOAD_LANGUAGE_CC]: <LanguageDetails />,
+    [ContentTypes.UPLOAD_CAST]: <CastDetails />,
+    [ContentTypes.UPLOAD_SPONSORS]: <h1>Sponsor Details</h1>,
+    [ContentTypes.UPLOAD_VISIBILITY]: <h1>Publish Details</h1>,
   };
 
   return (

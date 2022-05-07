@@ -1,22 +1,23 @@
 import React from "react";
 import { Stack } from "react-bootstrap";
 
+import { ContentTypes } from "../../types";
 import { StepIndicator } from "./../../../../libs";
 
 import * as Styled from "./UploadSteps.styled";
 
 interface IProps {
-  currentStep?: number;
-  onStepClick: (selectedStepNumber: number) => void;
+  contentType?: ContentTypes;
+  onStepClick: (contentType: ContentTypes) => void;
 }
 
 export const UploadSteps: React.FC<IProps> = ({
-  currentStep = 1,
+  contentType = ContentTypes.UPLOAD_DETAILS,
   onStepClick,
 }) => {
-  const handleStepBtnClick = React.useCallback(
-    (stepNumber: number) => {
-      onStepClick(stepNumber);
+  const handleContentTypeChange = React.useCallback(
+    (contentType: ContentTypes) => {
+      onStepClick(contentType);
     },
     [onStepClick]
   );
@@ -26,9 +27,9 @@ export const UploadSteps: React.FC<IProps> = ({
       <StepIndicator
         stepName="Details"
         stepNumber={1}
-        isActive={currentStep === 1}
+        isActive={contentType === ContentTypes.UPLOAD_DETAILS}
         direction="row"
-        onStepClick={() => handleStepBtnClick(1)}
+        onStepClick={() => handleContentTypeChange(ContentTypes.UPLOAD_DETAILS)}
       >
         <Styled.ConnectorLine />
       </StepIndicator>
@@ -36,9 +37,11 @@ export const UploadSteps: React.FC<IProps> = ({
       <StepIndicator
         stepName="Language/CC"
         stepNumber={2}
-        isActive={currentStep === 2}
+        isActive={contentType === ContentTypes.UPLOAD_LANGUAGE_CC}
         direction="row"
-        onStepClick={() => handleStepBtnClick(2)}
+        onStepClick={() =>
+          handleContentTypeChange(ContentTypes.UPLOAD_LANGUAGE_CC)
+        }
       >
         <Styled.ConnectorLine />
       </StepIndicator>
@@ -46,8 +49,8 @@ export const UploadSteps: React.FC<IProps> = ({
         stepName="Cast"
         stepNumber={3}
         direction="row"
-        isActive={currentStep === 3}
-        onStepClick={() => handleStepBtnClick(3)}
+        isActive={contentType === ContentTypes.UPLOAD_CAST}
+        onStepClick={() => handleContentTypeChange(ContentTypes.UPLOAD_CAST)}
       >
         <Styled.ConnectorLine />
       </StepIndicator>
@@ -55,8 +58,10 @@ export const UploadSteps: React.FC<IProps> = ({
         stepName="Sponsors"
         stepNumber={4}
         direction="row"
-        isActive={currentStep === 4}
-        onStepClick={() => handleStepBtnClick(4)}
+        isActive={contentType === ContentTypes.UPLOAD_SPONSORS}
+        onStepClick={() =>
+          handleContentTypeChange(ContentTypes.UPLOAD_SPONSORS)
+        }
       >
         <Styled.ConnectorLine />
       </StepIndicator>
@@ -64,8 +69,10 @@ export const UploadSteps: React.FC<IProps> = ({
         stepName="Visibility"
         stepNumber={5}
         direction="row"
-        isActive={currentStep === 5}
-        onStepClick={() => handleStepBtnClick(5)}
+        isActive={contentType === ContentTypes.UPLOAD_VISIBILITY}
+        onStepClick={() =>
+          handleContentTypeChange(ContentTypes.UPLOAD_VISIBILITY)
+        }
       />
     </Stack>
   );
