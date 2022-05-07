@@ -10,7 +10,7 @@ export const VisibilityDetailsHeader = styled.h3`
 `;
 
 export const HelpText = styled.p`
-  ${types.body.normal};
+  ${types.body.small};
   color: ${colors.text.mediumWhite};
   margin: 5px 0;
 `;
