@@ -11,29 +11,40 @@ export const DashboardContent: React.FC = () => {
 
   const handleOnDrop = React.useCallback(
     (acceptedFiles) => {
-      setUploadedFiles([...uploadedFiles, ...acceptedFiles]);
-      console.log(uploadedFiles);
-      setShowUploadModal(true);
+      if (acceptedFiles.length > 0) {
+        setUploadedFiles([...uploadedFiles, ...acceptedFiles]);
+        setShowUploadModal(true);
+      }
     },
     [uploadedFiles]
   );
 
+  const handleInvalidFormat = React.useCallback(() => {
+    alert("File format must be mp4.");
+  }, []);
+
   const onHideHandler = React.useCallback(() => {
-    setUploadedFiles([]);
     setShowUploadModal(false);
+    setUploadedFiles([]);
   }, []);
 
   return (
     <>
       <Styled.WelcomeHeader>Welcome Ravi!</Styled.WelcomeHeader>
       <DragAndDropZone
-        acceptedFileType="image/jpeg, image/png"
+        acceptedFileType="video/mp4"
         onDropHandler={handleOnDrop}
         direction="vertical"
         centerContent
         dropMessageText="Drag and drop or click to upload a movie"
+        onInvalidFormatError={handleInvalidFormat}
       />
-      <UploadModal show={showUploadModal} onHide={onHideHandler} />
+
+      <UploadModal
+        show={showUploadModal}
+        onHide={onHideHandler}
+        uploadedFile={uploadedFiles[0]}
+      />
     </>
   );
 };

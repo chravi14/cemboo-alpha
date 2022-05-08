@@ -5,3 +5,7 @@ export enum ContentTypes {
   UPLOAD_SPONSORS = "UPLOAD_SPONSORS",
   UPLOAD_VISIBILITY = "UPLOAD_VISIBILITY",
 }
+
+export interface IUploadedFile extends File {
+  preview?: string;
+}

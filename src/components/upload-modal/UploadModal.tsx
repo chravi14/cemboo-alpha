@@ -4,14 +4,19 @@ import { FullScreenModal } from "../../libs";
 
 import { UploadModalHeader } from "./upload-modal-header";
 import { UploadModalBody } from "./upload-modal-body";
-import { ContentTypes } from "./types";
+import { ContentTypes, IUploadedFile } from "./types";
 
 interface IUploadModalProps {
   show?: boolean;
   onHide?: () => void;
+  uploadedFile: IUploadedFile;
 }
 
-export const UploadModal: React.FC<IUploadModalProps> = ({ onHide, show }) => {
+export const UploadModal: React.FC<IUploadModalProps> = ({
+  onHide,
+  show,
+  uploadedFile,
+}) => {
   const [contentType, setContentType] = React.useState<ContentTypes>(
     ContentTypes.UPLOAD_DETAILS
   );
@@ -41,7 +46,12 @@ export const UploadModal: React.FC<IUploadModalProps> = ({ onHide, show }) => {
           contentType={contentType}
         />
       }
-      body={<UploadModalBody contentType={contentType} />}
+      body={
+        <UploadModalBody
+          contentType={contentType}
+          uploadedFile={uploadedFile}
+        />
+      }
     ></FullScreenModal>
   );
 };

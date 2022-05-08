@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../../../libs/themes/colors";
 
 export const VideoWrapper = styled.div`
   height: 330px;
@@ -8,6 +9,12 @@ export const VideoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 2px;
+`;
+
+export const VideoPlayer = styled.video`
+  width: 100%;
+  border: 1px solid;
+  border-color: ${colors.text.green};
 `;
 
 export const VideoTitle = styled.h3`

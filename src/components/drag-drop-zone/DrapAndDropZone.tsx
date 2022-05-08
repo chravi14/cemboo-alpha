@@ -27,6 +27,7 @@ interface IProps {
   showSmallImage?: boolean;
   textAlign?: "center" | "left";
   centerContent?: boolean;
+  onInvalidFormatError?: () => void;
 }
 
 export const DragAndDropZone: React.FC<IProps> = ({
@@ -37,13 +38,24 @@ export const DragAndDropZone: React.FC<IProps> = ({
   showSmallImage = false,
   centerContent = false,
   textAlign = "center",
+  onInvalidFormatError,
 }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
-      console.log(acceptedFiles);
-      onDropHandler(acceptedFiles);
+      if (acceptedFiles.length > 0) {
+        const filesWithPreviewUrl = acceptedFiles.map((file: File) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        );
+        onDropHandler(filesWithPreviewUrl);
+      } else {
+        if (onInvalidFormatError) {
+          onInvalidFormatError();
+        }
+      }
     },
-    [onDropHandler]
+    [onDropHandler, onInvalidFormatError]
   );
 
   const {

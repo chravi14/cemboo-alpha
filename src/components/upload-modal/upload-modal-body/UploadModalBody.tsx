@@ -12,10 +12,12 @@ import * as Styled from "./UploadModalBody.styled";
 
 interface IUploadModalBodyProps {
   contentType?: ContentTypes;
+  uploadedFile: File;
 }
 
 export const UploadModalBody: React.FC<IUploadModalBodyProps> = ({
   contentType = ContentTypes.UPLOAD_DETAILS,
+  uploadedFile,
 }) => {
   const body: { [key in ContentTypes]: React.ReactNode } = {
     [ContentTypes.UPLOAD_DETAILS]: <DetailsSection />,
@@ -32,7 +34,7 @@ export const UploadModalBody: React.FC<IUploadModalBodyProps> = ({
           {body[contentType]}
         </Styled.UploadFormWrapper>
         <Styled.UploadPreviewWrapper lg={8}>
-          <UploadPreview />
+          <UploadPreview uploadedFile={uploadedFile} />
         </Styled.UploadPreviewWrapper>
       </Styled.UploadBodyWrapperRow>
     </Styled.UploadBodyWrapper>
