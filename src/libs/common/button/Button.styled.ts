@@ -15,23 +15,24 @@ export const Button = styled(BaseButton)`
 `;
 
 export const DefaultButton = styled.button<any>`
-  background-color:transparent;
-  border:1px solid transparent;
-  text-align:${({ textAlign }) => (textAlign ? textAlign : "center")};
-  text-decoration:none;
-  vertical-align:middle;
+  background-color: transparent;
+  border: 1px solid transparent;
+  text-align: ${({ textAlign }) => (textAlign ? textAlign : "center")};
+  text-decoration: none;
+  vertical-align: middle;
   width: 100%;
-  padding:0.375rem 0.75rem;
-  line-height 1.5:
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
   color: ${colors.background.black};
-  font-size:1rem;
-  display:inline-block;
-  border-radius:0.25rem;
-  cursor:pointer;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  font-size: 1rem;
+  display: inline-block;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
   &:disabled {
-    pointer-events:none;
+    pointer-events: none;
   }
 
   ${({ size }) =>
@@ -53,11 +54,11 @@ export const DefaultButton = styled.button<any>`
     `}
 
     ${({ variant }) =>
-      variant === "secondary" &&
-      css`
-        background: ${colors.background.lightWhite};
-        color: ${colors.text.disabled};
-      `}
+    variant === "secondary" &&
+    css`
+      background: ${colors.background.lightWhite};
+      color: ${colors.text.disabled};
+    `}
 `;
 
 export const DropdownWrapper = styled(Dropdown)`

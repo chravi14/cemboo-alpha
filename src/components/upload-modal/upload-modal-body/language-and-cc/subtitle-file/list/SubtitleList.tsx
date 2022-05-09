@@ -1,18 +1,19 @@
 import React from "react";
 import { Image } from "react-bootstrap";
 
+import { ISubtitle } from "../../../../../../libs";
+
 import DeleteIcon from "./../../../../../../assets/images/delete.svg";
 import EditIcon from "./../../../../../../assets/images/edit.svg";
 import SrtIcon from "./../../../../../../assets/images/srt.svg";
 
 import * as Styled from "./SubtitleList.styled";
 
-interface IProps {
-  fileName: string;
-  fileLanguage: string;
-}
-
-export const SubtitleList: React.FC<IProps> = ({ fileLanguage, fileName }) => {
+export const SubtitleList: React.FC<ISubtitle> = ({
+  fileLanguage,
+  fileName,
+  subtitleFile,
+}) => {
   return (
     <Styled.SubtitleListContainer
       gap={3}

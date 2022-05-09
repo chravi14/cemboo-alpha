@@ -18,12 +18,12 @@ export const SubtitleFile: React.FC<ISubtitleFileProps> = ({
 }) => {
   const subtitleLanguageOptions = [
     {
-      id: 1,
+      id: "1",
       label: "English",
       value: "EN",
     },
     {
-      id: 2,
+      id: "2",
       label: "Chinese",
       value: "TCH",
     },

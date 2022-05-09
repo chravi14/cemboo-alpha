@@ -19,3 +19,16 @@ export {
   RadioInput,
   InputSwtich,
 } from "./common";
+
+export { Audience, PublishStatus } from "./models";
+
+export type {
+  IDetails,
+  IUpload,
+  ILanguageDetails,
+  ICast,
+  ISponsor,
+  ISubtitle,
+  IPlayList,
+  FileWithPreview,
+} from "./models";

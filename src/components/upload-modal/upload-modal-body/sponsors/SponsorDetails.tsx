@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Col } from "react-bootstrap";
 
-import { BaseButton } from "./../../../../libs";
+import { BaseButton, ISponsor, FileWithPreview } from "./../../../../libs";
 
 import { DragAndDropZone } from "../../../drag-drop-zone";
 
@@ -9,13 +9,17 @@ import { SponsorsList } from "./sponsors-list";
 
 import * as Styled from "./SponsorDetail.styled";
 
-export const SponsorDetails = () => {
-  const [isDisabled, setIsDisabled] = React.useState(true);
-  const [uploadedFiles, setUploadedFiles] = React.useState<File[]>([]);
+export const SponsorDetails: React.FC<{
+  onSponsorsDetailsSubmit: (sponsors: ISponsor[]) => void;
+}> = ({ onSponsorsDetailsSubmit }) => {
+  const [isDisabled, setIsDisabled] = React.useState(false);
+  const [uploadedFiles, setUploadedFiles] = React.useState<FileWithPreview[]>(
+    []
+  );
   const [showDragAndDropZone, setShowDragAndDropZone] = React.useState(true);
 
   const handleOnDrop = React.useCallback(
-    (acceptedFiles) => {
+    (acceptedFiles: FileWithPreview[]) => {
       setUploadedFiles([...uploadedFiles, ...acceptedFiles]);
     },
     [uploadedFiles]
@@ -38,6 +42,19 @@ export const SponsorDetails = () => {
     }
   }, [uploadedFiles]);
 
+  const handleSponsorDetailsSubmit = React.useCallback(
+    (event) => {
+      event.preventDefault();
+      const sponsorFiles = uploadedFiles.map((file) => {
+        return {
+          sponsorLogo: file,
+        };
+      });
+      onSponsorsDetailsSubmit(sponsorFiles);
+    },
+    [onSponsorsDetailsSubmit, uploadedFiles]
+  );
+
   return (
     <>
       <Styled.SponsorsDetailsHeader>Sponsors</Styled.SponsorsDetailsHeader>
@@ -45,7 +62,7 @@ export const SponsorDetails = () => {
         Upload all the images of the logos corresponding to the sponsors you
         want to appear on top of the video.
       </Styled.HelpText>
-      <Form>
+      <Form onSubmit={handleSponsorDetailsSubmit}>
         {uploadedFiles.length > 0 && (
           <Styled.FormFieldRow>
             <Col>
@@ -82,6 +99,7 @@ export const SponsorDetails = () => {
           </Col>
           <Col>
             <BaseButton
+              type="submit"
               variant={isDisabled ? "secondary" : "primary"}
               disabled={isDisabled}
             >

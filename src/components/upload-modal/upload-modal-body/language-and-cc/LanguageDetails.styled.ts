@@ -16,6 +16,12 @@ export const FormFieldRow = styled(Row)`
   margin-bottom: 15px;
 `;
 
+export const RequiredText = styled.p`
+  ${types.body.small};
+  color: ${colors.text.green};
+  margin: 5px 0;
+`;
+
 export const HelpText = styled.p`
   ${types.body.small};
   color: ${colors.text.mediumWhite};

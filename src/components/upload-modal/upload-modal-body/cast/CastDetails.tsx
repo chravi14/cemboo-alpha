@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Col, Stack } from "react-bootstrap";
 
-import { BaseButton } from "./../../../../libs";
+import { BaseButton, ICast } from "./../../../../libs";
 
 import PlusIcon from "./../../../../assets/images/plus.svg";
 
@@ -9,17 +9,13 @@ import { CastItem } from "./cast-item";
 import { CastUploadForm } from "./cast-upload-form";
 
 import * as Styled from "./CastDetails.styled";
+import { FileWithPreview } from "../../../../libs/models/uploads";
 
-export const CastDetails = () => {
+export const CastDetails: React.FC<{
+  onCastDetailsSubmit: (castDetails: ICast[]) => void;
+}> = ({ onCastDetailsSubmit }) => {
   const [isDisabled, setIsDisabled] = React.useState(true);
-  const [castList, setCastList] = React.useState<
-    {
-      castName: string;
-      roleName: string;
-      id: string;
-      castImageSrc: string;
-    }[]
-  >([]);
+  const [castList, setCastList] = React.useState<ICast[]>([]);
 
   const [showAddIcon, setShowAddIcon] = React.useState(true);
   const [showCastUploadForm, setShowCastUploadForm] = React.useState(false);
@@ -30,16 +26,14 @@ export const CastDetails = () => {
     if (event.target.checked) {
       const CAST_INFO = [
         {
-          id: "1",
-          castName: "Ryan Gosling",
+          name: "Ryan Gosling",
           roleName: "Officer KD6-3.7",
-          castImageSrc: "",
+          imageUrl: "",
         },
         {
-          id: "2",
-          castName: "Ana de Armas",
+          name: "Ana de Armas",
           roleName: "Joi",
-          castImageSrc: "",
+          imageUrl: "",
         },
       ];
       setCastList(CAST_INFO);
@@ -69,27 +63,28 @@ export const CastDetails = () => {
     [castList]
   );
 
-  const castListDetail = castList.map((cast) => (
+  const castListDetail = castList.map((cast, index) => (
     <CastItem
-      roleName={cast.roleName}
-      castName={cast.castName}
-      castImageSrc=""
+      roleName={cast?.roleName}
+      castName={cast?.name}
+      castImageSrc={cast.castImageFile ? cast.castImageFile.previewUrl : ""}
       showActions={!isImportedFromIMDB}
-      castId={cast.id}
+      castId={(index + 1).toString()}
       onDelete={handleCastDelete}
       onEdit={handleCastEdit}
     />
   ));
 
   const handleCastSave = React.useCallback(
-    (castName, roleName) => {
-      const newCastObj = {
-        castName,
+    (castName: string, roleName: string, castImage?: FileWithPreview) => {
+      const newCastObj: ICast = {
+        name: castName,
         roleName,
-        castImageSrc: "",
         id: `${castName}1`,
+        castImageFile: castImage,
       };
       setCastList([...castList, newCastObj]);
+      setShowCastUploadForm(false);
     },
     [castList]
   );
@@ -102,10 +97,31 @@ export const CastDetails = () => {
     setCastList([]);
   }, []);
 
+  const handleCastDetailsSubmit = React.useCallback(
+    (event) => {
+      event.preventDefault();
+      onCastDetailsSubmit(castList);
+    },
+    [onCastDetailsSubmit, castList]
+  );
+
+  React.useEffect(() => {
+    const checkFormValidity = () => {
+      console.log(castList);
+      if (castList.length > 0) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
+    };
+    checkFormValidity();
+  }, [castList]);
+
   return (
     <>
-      <Styled.CastDetailsHeader>Cast</Styled.CastDetailsHeader>
-      <Form>
+      <Styled.CastDetailsHeader>Cast *</Styled.CastDetailsHeader>
+      <Form onSubmit={handleCastDetailsSubmit}>
+        <Styled.RequiredText>* indicates required</Styled.RequiredText>
         <Styled.FormFieldRow>
           <Col>
             <Styled.CastField>
@@ -167,6 +183,7 @@ export const CastDetails = () => {
           </Col>
           <Col>
             <BaseButton
+              type="submit"
               variant={isDisabled ? "secondary" : "primary"}
               disabled={isDisabled}
             >

@@ -9,6 +9,12 @@ export const DetailsHeader = styled.h3`
   margin-bottom: 10px;
 `;
 
+export const RequiredText = styled.p`
+  ${types.body.small};
+  color: ${colors.text.green};
+  margin: 5px 0;
+`;
+
 export const FormFieldRow = styled(Row)`
   margin-bottom: 15px;
 `;

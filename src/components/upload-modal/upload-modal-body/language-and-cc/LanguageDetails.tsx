@@ -1,7 +1,13 @@
 import React from "react";
 import { Form, Col } from "react-bootstrap";
 
-import { SelectInput, BaseButton } from "./../../../../libs";
+import {
+  SelectInput,
+  BaseButton,
+  ILanguageDetails,
+  FileWithPreview,
+  ISubtitle,
+} from "./../../../../libs";
 
 import { DragAndDropZone } from "./../../../drag-drop-zone";
 
@@ -9,26 +15,30 @@ import { SubtitleFile, SubtitleList } from "./subtitle-file";
 
 import * as Styled from "./LanguageDetails.styled";
 
-interface ISubtitleFile {
-  subtitleFile: File;
-  subtitleLanguge: string;
-}
-
-export const LanguageDetails = () => {
+export const LanguageDetails: React.FC<{
+  onLanguageDetailsSubmit: (languageDetails: ILanguageDetails) => void;
+}> = ({ onLanguageDetailsSubmit }) => {
   const [isDisabled, setIsDisabled] = React.useState(true);
-  const [uploadedFiles, setUploadedFiles] = React.useState<File[]>([]);
-  const [submittedFiles, setSubmittedFiles] = React.useState<ISubtitleFile[]>(
+  const [uploadedFiles, setUploadedFiles] = React.useState<FileWithPreview[]>(
     []
   );
+  const [subtitleFiles, setSubtitleFiles] = React.useState<ISubtitle[]>([]);
   const [showDragAndDropZone, setShowDragAndDropZone] = React.useState(false);
+  const [
+    showErrorForEmptySubtitleLanguage,
+    setShowErrorForEmptySubtitleLanguage,
+  ] = React.useState(false);
+
+  const [uploadLanguage, setUploadLanguage] = React.useState("");
+
   const languageOptions = [
     {
-      id: 1,
+      id: "1",
       value: "EN",
       label: "English",
     },
     {
-      id: 2,
+      id: "2",
       value: "TCH",
       label: "Chinese",
     },
@@ -46,7 +56,7 @@ export const LanguageDetails = () => {
     setShowDragAndDropZone(event.target.checked);
     if (!event.target.checked) {
       setUploadedFiles([]);
-      setSubmittedFiles([]);
+      setSubtitleFiles([]);
     }
   }, []);
 
@@ -62,34 +72,73 @@ export const LanguageDetails = () => {
   );
 
   const handleFileSave = React.useCallback(
-    (file, language, index) => {
-      const newFile = {
+    (file: FileWithPreview, language: string, index: number) => {
+      if (!language) {
+        setShowErrorForEmptySubtitleLanguage(true);
+        return;
+      }
+      const newFile: ISubtitle = {
+        fileName: file.file.name,
+        fileLanguage: language,
         subtitleFile: file,
-        subtitleLanguge: language,
       };
-      setSubmittedFiles([...submittedFiles, newFile]);
+      setSubtitleFiles([...subtitleFiles, newFile]);
       handleFileDiscard(index);
     },
-    [submittedFiles, handleFileDiscard]
+    [subtitleFiles, handleFileDiscard]
   );
 
   const uploadedFilesList = uploadedFiles.map((file, index) => (
     <SubtitleFile
-      fileName={file.name}
+      fileName={file.file.name}
       fileNumber={index + 1}
       onSave={(language) => handleFileSave(file, language, index)}
       onDelete={() => handleFileDiscard(index)}
     />
   ));
 
-  const submittedFilesList = submittedFiles.map((file, index) => {
+  const submittedFilesList = subtitleFiles.map((file, index) => {
     return (
-      <SubtitleList
-        fileName={file.subtitleFile.name}
-        fileLanguage={file.subtitleLanguge}
-      />
+      <SubtitleList fileName={file.fileName} fileLanguage={file.fileLanguage} />
     );
   });
+
+  const handleLanguageSelect = React.useCallback((event) => {
+    console.log(event);
+    setUploadLanguage(event.target.value);
+  }, []);
+
+  const handleLanguageDetailsSubmit = React.useCallback(
+    (event) => {
+      event.preventDefault();
+      const subtitles = subtitleFiles.map(
+        ({ fileName, fileLanguage, subtitleFile }) => {
+          return {
+            fileName,
+            fileLanguage,
+            subtitleFile,
+          };
+        }
+      );
+      const languageDetails: ILanguageDetails = {
+        language: uploadLanguage,
+        subtitles,
+      };
+      onLanguageDetailsSubmit(languageDetails);
+    },
+    [onLanguageDetailsSubmit, subtitleFiles, uploadLanguage]
+  );
+
+  React.useEffect(() => {
+    const checkFormValidity = () => {
+      let hasErrors = false;
+      if (!uploadLanguage) {
+        hasErrors = true;
+      }
+      setIsDisabled(hasErrors);
+    };
+    checkFormValidity();
+  }, [subtitleFiles, uploadLanguage]);
 
   return (
     <>
@@ -100,18 +149,22 @@ export const LanguageDetails = () => {
         Use the the field below to select your video's language and, if you want
         to use captions.
       </Styled.HelpText>
-      <Form>
+      <Form onSubmit={handleLanguageDetailsSubmit}>
+        <Styled.RequiredText>* indicates required</Styled.RequiredText>
         <Styled.FormFieldRow>
           <Col>
             <SelectInput
-              fieldName="genre"
+              fieldName="language"
+              fieldLabel="Language *"
               options={languageOptions}
               placeholder="Audio Language"
+              fieldValue={uploadLanguage}
+              onChangeHandler={handleLanguageSelect}
             />
           </Col>
         </Styled.FormFieldRow>
         <Styled.FormFieldRow>
-          <Col>{submittedFiles && submittedFilesList}</Col>
+          <Col>{subtitleFiles && submittedFilesList}</Col>
         </Styled.FormFieldRow>
         <Styled.FormFieldRow>
           <Col>
@@ -154,6 +207,7 @@ export const LanguageDetails = () => {
           </Col>
           <Col>
             <BaseButton
+              type="submit"
               variant={isDisabled ? "secondary" : "primary"}
               disabled={isDisabled}
             >

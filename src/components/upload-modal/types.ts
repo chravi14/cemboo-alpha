@@ -7,5 +7,5 @@ export enum ContentTypes {
 }
 
 export interface IUploadedFile extends File {
-  preview?: string;
+  previewUrl?: string;
 }

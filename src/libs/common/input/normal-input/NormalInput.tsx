@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { Form } from "react-bootstrap";
 
 import * as Styled from "./NormalInput.styled";
@@ -9,7 +9,7 @@ interface ITextInputProps {
   fieldLabel?: string;
   fieldType?: string;
   fieldValue?: string;
-  onChangeHandler?: (value: string) => void;
+  onChangeHandler?: (event: React.ChangeEvent) => void;
 }
 
 interface IRadioProps {
@@ -17,11 +17,13 @@ interface IRadioProps {
   fieldLabel: string;
   fieldValue: string | number;
   fieldId: string;
+  checked?: boolean;
+  onChangeHandler: (event: React.ChangeEvent) => void;
 }
 
 interface ISelectProps extends ITextInputProps {
-  options: { id: number; value: string; label: string }[];
-  onChangeHandler?: (value: string) => void;
+  options: { id: string; value: string; label: string; name?: string }[];
+  onChangeHandler?: (event: React.ChangeEvent) => void;
 }
 
 export const TextInput: React.FC<ITextInputProps> = ({
@@ -38,6 +40,7 @@ export const TextInput: React.FC<ITextInputProps> = ({
       <Styled.FormGroupInput
         value={fieldValue}
         type={fieldType}
+        name={fieldName}
         placeholder={placeholder}
         onChange={onChangeHandler}
       />
@@ -49,11 +52,18 @@ export const TextAreaInput: React.FC<ITextInputProps> = ({
   fieldName,
   placeholder,
   fieldLabel,
+  onChangeHandler,
 }) => {
   return (
     <Styled.FormFieldGroup controlId={fieldName}>
       <Styled.FormGroupLabel>{fieldLabel}</Styled.FormGroupLabel>
-      <Styled.TextAreaInput as="textarea" rows={3} placeholder={placeholder} />
+      <Styled.TextAreaInput
+        as="textarea"
+        onChange={onChangeHandler}
+        rows={3}
+        placeholder={placeholder}
+        name={fieldName}
+      />
     </Styled.FormFieldGroup>
   );
 };
@@ -67,7 +77,7 @@ export const SelectInput: React.FC<ISelectProps> = ({
   onChangeHandler,
 }) => {
   const optionValues = options.map((option) => (
-    <option key={option.id} value={option.value}>
+    <option key={option.id} value={option.id}>
       {option.label}
     </option>
   ));
@@ -80,6 +90,7 @@ export const SelectInput: React.FC<ISelectProps> = ({
         aria-label="Default select example"
         onChange={onChangeHandler}
         value={fieldValue}
+        name={fieldName}
       >
         <option>{placeholder}</option>
         {optionValues}
@@ -93,6 +104,8 @@ export const RadioInput: React.FC<IRadioProps> = ({
   fieldName,
   fieldValue,
   fieldId,
+  checked,
+  onChangeHandler,
 }) => {
   return (
     <Styled.RadioInputWrapper>
@@ -101,6 +114,8 @@ export const RadioInput: React.FC<IRadioProps> = ({
         name={fieldName}
         value={fieldValue}
         id={fieldId}
+        defaultChecked={checked}
+        onChange={(event) => onChangeHandler(event)}
       />
       <Styled.RadioInputLabel htmlFor={fieldId}>
         {fieldLabel}

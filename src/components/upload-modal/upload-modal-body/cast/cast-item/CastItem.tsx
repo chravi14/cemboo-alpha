@@ -10,8 +10,8 @@ import * as Styled from "./CastItem.styled";
 interface ICast {
   castId: string;
   castName: string;
-  roleName: string;
-  castImageSrc: string;
+  roleName?: string;
+  castImageSrc?: string;
   showActions?: boolean;
   onDelete: (castId: string) => void;
   onEdit: (castId: string) => void;
@@ -30,7 +30,12 @@ export const CastItem: React.FC<ICast> = ({
     <Styled.CastItemWrapper>
       <Stack gap={2} direction="horizontal" className="space-between">
         <Stack gap={2} direction="horizontal" className="space-between">
-          <Image src={CastImage} roundedCircle={true} />
+          <Image
+            src={castImageSrc ? castImageSrc : CastImage}
+            roundedCircle={true}
+            width={60}
+            height={60}
+          />
           <Styled.CastName>
             {castName} as {roleName}
           </Styled.CastName>

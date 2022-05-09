@@ -6,6 +6,8 @@ import {
   Image as BsImage,
 } from "react-bootstrap";
 
+import { types, colors } from "../../../../../libs";
+
 export const ThumbnailImagesWrapper = styled(Stack)``;
 
 export const Popover = styled(BsPopover)`
@@ -30,4 +32,33 @@ export const ListGroupItem = styled(BsListGroupItem)`
 
 export const ListImage = styled(BsImage)`
   margin-right: 10px;
+`;
+
+export const UploadFromDeviceWrapper = styled.div``;
+
+export const ChooseFromVideoWrapper = styled.div``;
+
+export const OrText = styled.h3`
+  ${types.body.normal};
+  color: ${colors.text.green};
+`;
+
+export const ThumbnailFileInput = styled.input`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  & + label {
+    ${types.body.subtitle};
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    background: ${colors.background.linearGradient};
+    border-color: ${colors.background.linearGradient};
+    color: ${colors.text.green};
+    display: inline-block;
+  }
 `;

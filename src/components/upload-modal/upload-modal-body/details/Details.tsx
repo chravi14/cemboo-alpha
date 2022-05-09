@@ -7,51 +7,163 @@ import {
   SelectInput,
   RadioInput,
   BaseButton,
+  IDetails,
+  Audience,
+  FileWithPreview,
 } from "./../../../../libs";
 
 import { ThumbnailImagesSection } from "./thumbnail-images";
 
 import * as Styled from "./Details.styled";
 
-export const DetailsSection: React.FC = () => {
+export const DetailsSection: React.FC<{
+  onDetailsSubmit: (details: IDetails) => void;
+}> = ({ onDetailsSubmit }) => {
   const [isDisabled, setIsDisabled] = React.useState(true);
+  const [uploadDetails, setUploadDetails] = React.useState<IDetails>({
+    title: "",
+    description: "",
+    directors: "",
+    producers: "",
+    productionYear: "",
+    genre: "",
+    audience: Audience.GENERAL,
+    playlist: {
+      id: "",
+      name: "",
+    },
+    imdbLink: "",
+    thumbnailImages: undefined,
+  });
 
   const yearOptions = [
     {
-      id: 1,
+      id: "1",
       value: "2001",
       label: "2001",
     },
     {
-      id: 2,
+      id: "2",
       value: "2002",
       label: "2002",
     },
   ];
 
-  const genreOptions = [
-    {
-      id: 1,
-      value: "action",
-      label: "Action",
+  const playListOptions = React.useMemo(
+    () => [
+      {
+        id: "1",
+        label: "Sports - Baseball",
+        value: "Sports - Baseball",
+        name: "Sports - Baseball",
+      },
+      {
+        id: "2",
+        label: "NFL League",
+        value: "NFL League",
+        name: "NFL League",
+      },
+    ],
+    []
+  );
+
+  const genreOptions = React.useMemo(
+    () => [
+      {
+        id: "1",
+        value: "action",
+        label: "Action",
+      },
+      {
+        id: "2",
+        value: "adventure",
+        label: "Adventure",
+      },
+    ],
+    []
+  );
+
+  const handleInputChange = React.useCallback(
+    (event) => {
+      setUploadDetails({
+        ...uploadDetails,
+        [event.target.name]: event.target.value,
+      });
     },
-    {
-      id: 2,
-      value: "adventure",
-      label: "Adventure",
+    [uploadDetails]
+  );
+
+  const handlePlaylistChange = React.useCallback(
+    (event) => {
+      const playlistId = event.target.value;
+      const playlistSelected = playListOptions.find(
+        (playlist) => playlist.id === playlistId
+      );
+      setUploadDetails({
+        ...uploadDetails,
+        playlist: playlistSelected,
+      });
     },
-  ];
+    [uploadDetails, playListOptions]
+  );
+
+  const handleGenreChange = React.useCallback(
+    (event) => {
+      const genreId = event.target.value;
+      const genreSelected = genreOptions.find((genre) => genre.id === genreId);
+      setUploadDetails({
+        ...uploadDetails,
+        genre: genreSelected?.id.toString(),
+      });
+    },
+    [uploadDetails, genreOptions]
+  );
+
+  const handleThumbnailImageUpload = React.useCallback(
+    (thumbnailImage: FileWithPreview) => {
+      setUploadDetails({ ...uploadDetails, thumbnailImages: thumbnailImage });
+    },
+    [uploadDetails]
+  );
+
+  React.useEffect(() => {
+    const checkFormValidity = () => {
+      let hasErrors = false;
+      if (
+        !uploadDetails.title ||
+        !uploadDetails.audience ||
+        !uploadDetails.directors ||
+        !uploadDetails.producers ||
+        !uploadDetails.productionYear
+      ) {
+        hasErrors = true;
+      }
+      setIsDisabled(hasErrors);
+    };
+    checkFormValidity();
+  }, [uploadDetails]);
+
+  const handleFormSubmit = React.useCallback(
+    (event) => {
+      event.preventDefault();
+      onDetailsSubmit(uploadDetails);
+    },
+    [uploadDetails, onDetailsSubmit]
+  );
 
   return (
     <>
       <Styled.DetailsHeader>Details</Styled.DetailsHeader>
-      <Form>
+      <Form onSubmit={handleFormSubmit}>
+        <Styled.RequiredText>* indicates required</Styled.RequiredText>
         <Styled.FormFieldRow>
           <Col>
             <TextInput
               fieldName="title"
-              fieldLabel="Title"
+              fieldLabel="Title *"
               placeholder="Add a title for the video"
+              fieldValue={uploadDetails.title}
+              onChangeHandler={handleInputChange}
             />
           </Col>
         </Styled.FormFieldRow>
@@ -61,6 +173,8 @@ export const DetailsSection: React.FC = () => {
               fieldName="description"
               fieldLabel="Description"
               placeholder="Tell viewers what the video is about"
+              fieldValue={uploadDetails.description}
+              onChangeHandler={handleInputChange}
             />
           </Col>
         </Styled.FormFieldRow>
@@ -68,8 +182,10 @@ export const DetailsSection: React.FC = () => {
           <Col>
             <TextInput
               fieldName="directors"
-              fieldLabel="Directors (use comma to separate values)"
+              fieldLabel="Directors (use comma to separate values) *"
               placeholder="Add all directors here"
+              fieldValue={uploadDetails.directors}
+              onChangeHandler={handleInputChange}
             />
           </Col>
         </Styled.FormFieldRow>
@@ -77,8 +193,10 @@ export const DetailsSection: React.FC = () => {
           <Col>
             <SelectInput
               fieldName="productionYear"
-              fieldLabel="Production Year"
+              fieldLabel="Production Year *"
               options={yearOptions}
+              fieldValue={uploadDetails.productionYear}
+              onChangeHandler={handleInputChange}
               placeholder="Click here to select year"
             />
           </Col>
@@ -95,43 +213,57 @@ export const DetailsSection: React.FC = () => {
               A good thumbnail stands out and attracts the attention of users.
             </Styled.ThumbnailText>
           </Styled.FormFieldRow>
-          <ThumbnailImagesSection />
+          <ThumbnailImagesSection
+            onThumbnailUpload={handleThumbnailImageUpload}
+          />
         </Styled.ThumbnailSectionContainer>
         <Styled.AudienceSectionWrapper>
-          <Styled.AudienceHeader>Audience</Styled.AudienceHeader>
+          <Styled.AudienceHeader>Audience *</Styled.AudienceHeader>
           <Styled.AudienceText>
             Please tell us which audience your film is intended for
           </Styled.AudienceText>
           <Styled.AudienceRadioInputWrapper direction="vertical" gap={3}>
             <RadioInput
-              fieldValue={1}
               fieldLabel="G: General Audiences"
               fieldName="audience"
               fieldId="G"
+              fieldValue={Audience.GENERAL}
+              checked={uploadDetails.audience === Audience.GENERAL}
+              onChangeHandler={handleInputChange}
             />
             <RadioInput
-              fieldValue={2}
+              fieldValue={Audience.PARENTAL_GUIDANCE}
+              onChangeHandler={handleInputChange}
               fieldLabel="PG: Parental Guidance Suggested"
               fieldName="audience"
+              checked={uploadDetails.audience === Audience.PARENTAL_GUIDANCE}
               fieldId="PG"
             />
             <RadioInput
-              fieldValue={3}
+              fieldValue={Audience.STRICT_PARENTAL_GUIDANCE}
+              onChangeHandler={handleInputChange}
               fieldLabel="PG-13: Parental Strongly Cautioned"
               fieldName="audience"
+              checked={
+                uploadDetails.audience === Audience.STRICT_PARENTAL_GUIDANCE
+              }
               fieldId="PG-13"
             />
             <RadioInput
-              fieldValue={4}
+              fieldValue={Audience.RESTRICTED}
+              onChangeHandler={handleInputChange}
               fieldId="R"
               fieldLabel="R: Restricted"
+              checked={uploadDetails.audience === Audience.RESTRICTED}
               fieldName="audience"
             />
             <RadioInput
-              fieldValue={5}
+              fieldValue={Audience.ADULT}
+              onChangeHandler={handleInputChange}
               fieldId="NC-17"
               fieldLabel="NC-17: Clearly Adult"
               fieldName="audience"
+              checked={uploadDetails.audience === Audience.ADULT}
             />
           </Styled.AudienceRadioInputWrapper>
         </Styled.AudienceSectionWrapper>
@@ -140,9 +272,11 @@ export const DetailsSection: React.FC = () => {
         <Styled.FormFieldRow>
           <Col>
             <TextInput
-              fieldLabel="Producer/s  (use commas between each)"
+              fieldLabel="Producer/s  (use commas between each) *"
               fieldName="producers"
               placeholder="Add all producers here"
+              fieldValue={uploadDetails.producers}
+              onChangeHandler={handleInputChange}
             />
           </Col>
         </Styled.FormFieldRow>
@@ -152,6 +286,8 @@ export const DetailsSection: React.FC = () => {
               fieldLabel="IMDB Link"
               fieldName="imdbLink"
               placeholder="Add link here"
+              fieldValue={uploadDetails.imdbLink}
+              onChangeHandler={handleInputChange}
             />
           </Col>
         </Styled.FormFieldRow>
@@ -166,6 +302,8 @@ export const DetailsSection: React.FC = () => {
                 fieldName="genre"
                 options={genreOptions}
                 placeholder="Select Genre"
+                fieldValue={uploadDetails.genre}
+                onChangeHandler={handleGenreChange}
               />
             </Col>
           </Styled.FormFieldRow>
@@ -179,14 +317,17 @@ export const DetailsSection: React.FC = () => {
           <Styled.FormFieldRow>
             <Col>
               <SelectInput
-                fieldName="playlists"
-                options={yearOptions}
+                fieldName="playlist"
+                options={playListOptions}
                 placeholder="Select Playlist"
+                fieldValue={uploadDetails.playlist?.id}
+                onChangeHandler={handlePlaylistChange}
               />
             </Col>
           </Styled.FormFieldRow>
         </Styled.SelectFieldWrapper>
         <BaseButton
+          type="submit"
           variant={isDisabled ? "secondary" : "primary"}
           disabled={isDisabled}
         >

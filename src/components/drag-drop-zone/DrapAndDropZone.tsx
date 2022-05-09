@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { Image } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 
+import { FileWithPreview } from "../../libs";
 import DragAndDropImage from "./../../assets/images/upload-image.svg";
 import SmallDrapAndDropImage from "./../../assets/images/draganddrop.svg";
 
@@ -22,7 +23,7 @@ const rejectStyle = {
 interface IProps {
   acceptedFileType: string;
   dropMessageText?: string;
-  onDropHandler: (files: File[]) => void;
+  onDropHandler: (files: FileWithPreview[]) => void;
   direction?: "horizontal" | "vertical";
   showSmallImage?: boolean;
   textAlign?: "center" | "left";
@@ -44,9 +45,13 @@ export const DragAndDropZone: React.FC<IProps> = ({
     (acceptedFiles) => {
       if (acceptedFiles.length > 0) {
         const filesWithPreviewUrl = acceptedFiles.map((file: File) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
+          Object.assign(
+            {},
+            {
+              file: file,
+              previewUrl: URL.createObjectURL(file),
+            }
+          )
         );
         onDropHandler(filesWithPreviewUrl);
       } else {

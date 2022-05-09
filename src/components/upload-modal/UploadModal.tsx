@@ -36,6 +36,24 @@ export const UploadModal: React.FC<IUploadModalProps> = ({
     setContentType(ContentTypes.UPLOAD_DETAILS);
   }, [onHide]);
 
+  const handleUploadDetailsSubmit = React.useCallback((uploadDetails) => {
+    console.log(uploadDetails);
+  }, []);
+
+  const handleContinueToNextSection = React.useCallback(() => {
+    if (contentType === ContentTypes.UPLOAD_DETAILS) {
+      setContentType(ContentTypes.UPLOAD_LANGUAGE_CC);
+    } else if (contentType === ContentTypes.UPLOAD_LANGUAGE_CC) {
+      setContentType(ContentTypes.UPLOAD_CAST);
+    } else if (contentType === ContentTypes.UPLOAD_CAST) {
+      setContentType(ContentTypes.UPLOAD_SPONSORS);
+    } else if (contentType === ContentTypes.UPLOAD_SPONSORS) {
+      setContentType(ContentTypes.UPLOAD_VISIBILITY);
+    } else {
+      console.log("Final Section");
+    }
+  }, [contentType]);
+
   return (
     <FullScreenModal
       show={show}
@@ -50,6 +68,8 @@ export const UploadModal: React.FC<IUploadModalProps> = ({
         <UploadModalBody
           contentType={contentType}
           uploadedFile={uploadedFile}
+          onUploadDetailsSubmit={handleUploadDetailsSubmit}
+          onContinueToNextSection={handleContinueToNextSection}
         />
       }
     ></FullScreenModal>
