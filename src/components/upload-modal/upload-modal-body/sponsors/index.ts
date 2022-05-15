@@ -1,0 +1,1 @@
+export { SponsorDetails } from "./SponsorDetails";

@@ -11,7 +11,7 @@ interface ITextInputProps {
   onChangeHandler?: (value: string) => void;
 }
 
-export const TextInput: React.FC<ITextInputProps> = ({
+export const FloatingTextInput: React.FC<ITextInputProps> = ({
   label,
   type = "text",
   placeholder,

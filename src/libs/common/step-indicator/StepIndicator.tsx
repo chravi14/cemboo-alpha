@@ -29,7 +29,11 @@ export const StepIndicator: React.FC<IProps> = ({
       direction={direction}
       {...opts}
     >
-      <Styled.Badge pill bg={isActive ? "primary" : "secondary"}>
+      <Styled.Badge
+        pill
+        bg={isActive ? "primary" : "secondary"}
+        direction={direction}
+      >
         {stepNumber}
       </Styled.Badge>
       <Styled.StepButtonText

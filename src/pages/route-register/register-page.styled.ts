@@ -13,6 +13,10 @@ export const RegistrationPageRow = styled(Row)``;
 
 export const PackageInfoCol = styled(Col)``;
 
+export const RegistrationHeader = styled.div`
+  padding: 20px;
+`;
+
 export const RegistrationCol = styled(Col)`
   background-color: ${colors.background.lightBlack};
   height: 100vh;

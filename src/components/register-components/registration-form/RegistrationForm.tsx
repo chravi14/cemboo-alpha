@@ -1,6 +1,6 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import { BaseButton, TextInput } from "../../../libs";
+import { BaseButton, FloatingTextInput as TextInput } from "../../../libs";
 import { RegistrationSteps } from "../registration-steps";
 
 import * as Styled from "./RegistrationForm.styled";

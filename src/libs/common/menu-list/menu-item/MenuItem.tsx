@@ -15,7 +15,7 @@ export const MenuItem: React.FC<IMenuItemProps> = ({
   isActive = false,
 }) => {
   return (
-    <Styled.MenuItemContainer active={isActive}>
+    <Styled.MenuItemContainer isactive={isActive}>
       <Styled.MenuItemRow className="align-items-center">
         {iconPath && (
           <Styled.MenuItemIconWrapper md={3}>

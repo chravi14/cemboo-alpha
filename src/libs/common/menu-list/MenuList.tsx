@@ -21,6 +21,7 @@ export const MenuList: React.FC<IProps> = ({ menuList }) => {
     <Styled.MenuListWrapper>
       {menuList.map((el) => (
         <MenuItem
+          key={el.itemText}
           menuItemText={el.itemText}
           iconPath={el.iconPath}
           isActive={isLinkActive(el.linkPath)}

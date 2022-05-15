@@ -2,7 +2,9 @@ import React, { useCallback, useMemo } from "react";
 import { Image } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 
+import { FileWithPreview } from "../../libs";
 import DragAndDropImage from "./../../assets/images/upload-image.svg";
+import SmallDrapAndDropImage from "./../../assets/images/draganddrop.svg";
 
 import * as Styled from "./DrapAndDropZone.styled";
 
@@ -21,8 +23,12 @@ const rejectStyle = {
 interface IProps {
   acceptedFileType: string;
   dropMessageText?: string;
-  onDropHandler: (files: File[]) => void;
+  onDropHandler: (files: FileWithPreview[]) => void;
   direction?: "horizontal" | "vertical";
+  showSmallImage?: boolean;
+  textAlign?: "center" | "left";
+  centerContent?: boolean;
+  onInvalidFormatError?: () => void;
 }
 
 export const DragAndDropZone: React.FC<IProps> = ({
@@ -30,13 +36,31 @@ export const DragAndDropZone: React.FC<IProps> = ({
   dropMessageText,
   onDropHandler,
   direction = "horizontal",
+  showSmallImage = false,
+  centerContent = false,
+  textAlign = "center",
+  onInvalidFormatError,
 }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
-      console.log(acceptedFiles);
-      onDropHandler(acceptedFiles);
+      if (acceptedFiles.length > 0) {
+        const filesWithPreviewUrl = acceptedFiles.map((file: File) =>
+          Object.assign(
+            {},
+            {
+              file: file,
+              previewUrl: URL.createObjectURL(file),
+            }
+          )
+        );
+        onDropHandler(filesWithPreviewUrl);
+      } else {
+        if (onInvalidFormatError) {
+          onInvalidFormatError();
+        }
+      }
     },
-    [onDropHandler]
+    [onDropHandler, onInvalidFormatError]
   );
 
   const {
@@ -60,17 +84,18 @@ export const DragAndDropZone: React.FC<IProps> = ({
     [isDragActive, isDragReject, isDragAccept]
   );
 
-  console.log({ ...getRootProps({ style }) });
-
   return (
     <Styled.DragAndDropZoneWrapper {...getRootProps({ style })}>
       <input {...getInputProps()} />
       <Styled.DragAndDropZoneTextWrapper
+        textAlign={textAlign}
         direction={direction}
         gap={3}
-        className="col-md-5 mx-auto"
+        className={centerContent ? "col-md-5 mx-auto" : ""}
       >
-        <Image src={DragAndDropImage} />
+        <Image
+          src={showSmallImage ? SmallDrapAndDropImage : DragAndDropImage}
+        />
         <Styled.DragAndDropZoneText>
           {dropMessageText
             ? dropMessageText

@@ -1,8 +1,8 @@
 import React from "react";
 
 import { LoginForm } from "../../components";
+import { HeaderLogo } from "../../libs";
 
-import CembooLogo from "./../../assets/images/logos/logo.png";
 import MiramaxLogo from "./../../assets/images/logos/miramax_logo.png";
 
 import * as Styled from "./login-page.styled";
@@ -13,7 +13,7 @@ export const LoginPage = () => {
       <Styled.LoginPageRow>
         <Styled.LoginFormContainer md={8}>
           <Styled.LoginFormHeader>
-            <Styled.LoginPageLogo src={CembooLogo} />
+            <HeaderLogo />
             <Styled.LoginPageRightNavWrapper>
               <Styled.RegistrationLinkText>
                 Don't have an account?{" "}

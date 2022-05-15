@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonGroup, Dropdown, Button as BsButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
 import * as Styled from "./Button.styled";
 
@@ -9,6 +9,7 @@ interface IButtonProps {
   disabled?: boolean;
   size?: "md" | "lg" | "sm";
   textAlign?: "left" | "right" | "center";
+  type?: "button" | "submit";
 }
 
 export const Button: React.FC<IButtonProps> = ({
@@ -29,15 +30,16 @@ export const BaseButton: React.FC<IButtonProps> = ({
   disabled = false,
   size = "md",
   textAlign = "center",
+  type = "button",
   ...opts
 }) => {
   return (
     <Styled.DefaultButton
-      type="button"
       variant={variant}
       disabled={disabled}
       size={size}
       textAlign={textAlign}
+      type={type}
       {...opts}
     >
       {children}
@@ -46,7 +48,6 @@ export const BaseButton: React.FC<IButtonProps> = ({
 };
 
 export const DropdownButton: React.FC = ({ children }) => {
-  console.log(children);
   return (
     <Styled.DropdownWrapper>
       <Styled.DropdownToggle variant="primary" id="dropdown-basic" size="md">
