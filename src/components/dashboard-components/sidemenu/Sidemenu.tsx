@@ -8,10 +8,17 @@ import * as Styled from "./Sidemenu.styled";
 import MenuIcon from "./../../../assets/images/icons/menu_icon.png";
 import ActiveMenuIcon from "./../../../assets/images/icons/menu_icon_active.png";
 
-export const DashboardSideMenu: React.FC = () => {
+interface ISideMenuProps {
+  onClickUploadVideo: () => void;
+}
+
+export const DashboardSideMenu: React.FC<ISideMenuProps> = ({
+  onClickUploadVideo,
+}) => {
   const uploadVideoHandler = React.useCallback(() => {
     console.log("Upload vido clicked");
-  }, []);
+    onClickUploadVideo();
+  }, [onClickUploadVideo]);
 
   const liveStreamHandler = React.useCallback(() => {
     console.log("Live stream clicked");

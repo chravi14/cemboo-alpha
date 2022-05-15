@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Stack, Row } from "react-bootstrap";
+import { Stack, Row, Spinner } from "react-bootstrap";
 
 import { types, colors } from "./../../../../libs";
 
@@ -27,4 +27,8 @@ export const FormFieldRow = styled(Row)`
 
 export const VisibilityOptionsWrapper = styled(Stack)`
   width: 100%;
+`;
+
+export const LoadingSpinner = styled(Spinner)`
+  margin-right: 10px;
 `;

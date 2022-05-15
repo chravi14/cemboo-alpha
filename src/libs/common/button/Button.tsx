@@ -48,7 +48,6 @@ export const BaseButton: React.FC<IButtonProps> = ({
 };
 
 export const DropdownButton: React.FC = ({ children }) => {
-  console.log(children);
   return (
     <Styled.DropdownWrapper>
       <Styled.DropdownToggle variant="primary" id="dropdown-basic" size="md">

@@ -1,11 +1,3 @@
-export interface IUpload {
-  details: IDetails;
-  language: ILanguageDetails;
-  cast: ICast[];
-  sponsors?: ISponsor[];
-  status?: PublishStatus;
-}
-
 export interface IDetails {
   title: string;
   description?: string;
@@ -16,7 +8,7 @@ export interface IDetails {
   imdbLink?: string;
   genre?: string;
   playlist?: IPlayList;
-  thumbnailImages?: FileWithPreview;
+  thumbnails?: FileWithPreview;
 }
 
 export interface FileWithPreview {

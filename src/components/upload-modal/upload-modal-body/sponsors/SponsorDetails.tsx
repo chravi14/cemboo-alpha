@@ -11,10 +11,13 @@ import * as Styled from "./SponsorDetail.styled";
 
 export const SponsorDetails: React.FC<{
   onSponsorsDetailsSubmit: (sponsors: ISponsor[]) => void;
-}> = ({ onSponsorsDetailsSubmit }) => {
+  sponsorDetails?: ISponsor[];
+}> = ({ onSponsorsDetailsSubmit, sponsorDetails }) => {
   const [isDisabled, setIsDisabled] = React.useState(false);
   const [uploadedFiles, setUploadedFiles] = React.useState<FileWithPreview[]>(
-    []
+    sponsorDetails && sponsorDetails.length > 0
+      ? sponsorDetails.map((sponsor) => sponsor.sponsorLogo)
+      : []
   );
   const [showDragAndDropZone, setShowDragAndDropZone] = React.useState(true);
 

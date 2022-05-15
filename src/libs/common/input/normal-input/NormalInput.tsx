@@ -53,6 +53,7 @@ export const TextAreaInput: React.FC<ITextInputProps> = ({
   placeholder,
   fieldLabel,
   onChangeHandler,
+  fieldValue,
 }) => {
   return (
     <Styled.FormFieldGroup controlId={fieldName}>
@@ -61,6 +62,7 @@ export const TextAreaInput: React.FC<ITextInputProps> = ({
         as="textarea"
         onChange={onChangeHandler}
         rows={3}
+        value={fieldValue}
         placeholder={placeholder}
         name={fieldName}
       />

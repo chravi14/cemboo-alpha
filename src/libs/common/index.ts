@@ -1,5 +1,5 @@
 export * from "./constants";
-export { replaceLocation } from "./utils";
+export { replaceLocation, convertFileToBlob } from "./utils";
 export { StepIndicator } from "./step-indicator";
 export {
   FloatingTextInput,

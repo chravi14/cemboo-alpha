@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Spinner } from "react-bootstrap";
 
 import { RadioInput, BaseButton, PublishStatus } from "../../../../libs";
 
@@ -9,6 +9,7 @@ export const VisibilityDetails: React.FC<{
   onVisibilityDetailSubmit: (status: PublishStatus) => void;
 }> = ({ onVisibilityDetailSubmit }) => {
   const [isDisabled, setIsDisabled] = React.useState(true);
+  const [showSpinner, setShowSpinner] = React.useState(false);
   const [visibilityStatus, setVisibilityStatus] =
     React.useState<PublishStatus>();
 
@@ -24,6 +25,8 @@ export const VisibilityDetails: React.FC<{
       event.preventDefault();
       if (visibilityStatus) {
         onVisibilityDetailSubmit(visibilityStatus);
+        setShowSpinner(true);
+        setIsDisabled(true);
       }
     },
     [visibilityStatus, onVisibilityDetailSubmit]
@@ -81,6 +84,13 @@ export const VisibilityDetails: React.FC<{
               variant={isDisabled ? "secondary" : "primary"}
               disabled={isDisabled}
             >
+              {showSpinner && (
+                <Styled.LoadingSpinner
+                  animation="border"
+                  size="sm"
+                  variant="primary"
+                />
+              )}
               Continue
             </BaseButton>
           </Col>

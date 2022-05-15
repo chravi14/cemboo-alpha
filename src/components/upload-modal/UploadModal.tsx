@@ -1,21 +1,29 @@
 import React from "react";
 
-import { FullScreenModal } from "../../libs";
+import {
+  FullScreenModal,
+  FileWithPreview,
+  IUploadRequestDto,
+  IUpload,
+} from "../../libs";
 
 import { UploadModalHeader } from "./upload-modal-header";
 import { UploadModalBody } from "./upload-modal-body";
-import { ContentTypes, IUploadedFile } from "./types";
+import { ContentTypes } from "./types";
+import { fileUploadService } from "../../services";
 
 interface IUploadModalProps {
   show?: boolean;
-  onHide?: () => void;
-  uploadedFile: IUploadedFile;
+  onHide?: (newUpload?: IUpload) => void;
+  uploadedFile: FileWithPreview;
+  clientId?: string;
 }
 
 export const UploadModal: React.FC<IUploadModalProps> = ({
   onHide,
   show,
   uploadedFile,
+  clientId,
 }) => {
   const [contentType, setContentType] = React.useState<ContentTypes>(
     ContentTypes.UPLOAD_DETAILS
@@ -24,21 +32,31 @@ export const UploadModal: React.FC<IUploadModalProps> = ({
   const contentTypeChangeHandler = React.useCallback(
     (selectedContentType: ContentTypes) => {
       setContentType(selectedContentType);
-      console.log("Clicked", selectedContentType);
     },
     []
   );
 
-  const handleModalHide = React.useCallback(() => {
-    if (onHide) {
-      onHide();
-    }
-    setContentType(ContentTypes.UPLOAD_DETAILS);
-  }, [onHide]);
+  const handleModalHide = React.useCallback(
+    (newUpload?: IUpload) => {
+      if (onHide) {
+        onHide(newUpload);
+      }
+      setContentType(ContentTypes.UPLOAD_DETAILS);
+    },
+    [onHide]
+  );
 
-  const handleUploadDetailsSubmit = React.useCallback((uploadDetails) => {
-    console.log(uploadDetails);
-  }, []);
+  const handleUploadDetailsSubmit = React.useCallback(
+    async (uploadDetails: IUploadRequestDto) => {
+      console.log(uploadDetails);
+      const response = await fileUploadService.uploadVideoWithMetaData(
+        uploadDetails
+      );
+      console.log(response);
+      handleModalHide(response);
+    },
+    [handleModalHide]
+  );
 
   const handleContinueToNextSection = React.useCallback(() => {
     if (contentType === ContentTypes.UPLOAD_DETAILS) {
@@ -68,6 +86,7 @@ export const UploadModal: React.FC<IUploadModalProps> = ({
         <UploadModalBody
           contentType={contentType}
           uploadedFile={uploadedFile}
+          clientId={clientId}
           onUploadDetailsSubmit={handleUploadDetailsSubmit}
           onContinueToNextSection={handleContinueToNextSection}
         />

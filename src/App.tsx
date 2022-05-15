@@ -18,6 +18,7 @@ function App() {
   return (
     <>
       {showNavigation && <NavigationContainer />}
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path={ROUTEPATHS.ABOUT} element={<AboutPage />} />

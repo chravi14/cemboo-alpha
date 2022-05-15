@@ -18,23 +18,28 @@ import * as Styled from "./Details.styled";
 
 export const DetailsSection: React.FC<{
   onDetailsSubmit: (details: IDetails) => void;
-}> = ({ onDetailsSubmit }) => {
+  details?: IDetails;
+}> = ({ onDetailsSubmit, details }) => {
   const [isDisabled, setIsDisabled] = React.useState(true);
-  const [uploadDetails, setUploadDetails] = React.useState<IDetails>({
-    title: "",
-    description: "",
-    directors: "",
-    producers: "",
-    productionYear: "",
-    genre: "",
-    audience: Audience.GENERAL,
-    playlist: {
-      id: "",
-      name: "",
-    },
-    imdbLink: "",
-    thumbnailImages: undefined,
-  });
+  const [uploadDetails, setUploadDetails] = React.useState<IDetails>(
+    details
+      ? { ...details }
+      : {
+          title: "",
+          description: "",
+          directors: "",
+          producers: "",
+          productionYear: "",
+          genre: "",
+          audience: Audience.GENERAL,
+          playlist: {
+            id: "",
+            name: "",
+          },
+          imdbLink: "",
+          thumbnails: undefined,
+        }
+  );
 
   const yearOptions = [
     {
@@ -121,7 +126,7 @@ export const DetailsSection: React.FC<{
 
   const handleThumbnailImageUpload = React.useCallback(
     (thumbnailImage: FileWithPreview) => {
-      setUploadDetails({ ...uploadDetails, thumbnailImages: thumbnailImage });
+      setUploadDetails({ ...uploadDetails, thumbnails: thumbnailImage });
     },
     [uploadDetails]
   );

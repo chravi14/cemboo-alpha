@@ -17,19 +17,31 @@ import * as Styled from "./LanguageDetails.styled";
 
 export const LanguageDetails: React.FC<{
   onLanguageDetailsSubmit: (languageDetails: ILanguageDetails) => void;
-}> = ({ onLanguageDetailsSubmit }) => {
+  languageDetails?: ILanguageDetails;
+}> = ({ onLanguageDetailsSubmit, languageDetails }) => {
+  console.log(languageDetails);
   const [isDisabled, setIsDisabled] = React.useState(true);
   const [uploadedFiles, setUploadedFiles] = React.useState<FileWithPreview[]>(
     []
   );
-  const [subtitleFiles, setSubtitleFiles] = React.useState<ISubtitle[]>([]);
-  const [showDragAndDropZone, setShowDragAndDropZone] = React.useState(false);
+  const [subtitleFiles, setSubtitleFiles] = React.useState<ISubtitle[]>(
+    languageDetails?.subtitles && languageDetails?.subtitles.length > 0
+      ? languageDetails.subtitles
+      : []
+  );
+  const [showDragAndDropZone, setShowDragAndDropZone] = React.useState(
+    languageDetails?.subtitles && languageDetails?.subtitles?.length > 0
+      ? true
+      : false
+  );
   const [
     showErrorForEmptySubtitleLanguage,
     setShowErrorForEmptySubtitleLanguage,
   ] = React.useState(false);
 
-  const [uploadLanguage, setUploadLanguage] = React.useState("");
+  const [uploadLanguage, setUploadLanguage] = React.useState(
+    languageDetails?.language || ""
+  );
 
   const languageOptions = [
     {
@@ -172,6 +184,7 @@ export const LanguageDetails: React.FC<{
               <Styled.FormSwitch
                 type="switch"
                 id="custom-switch"
+                checked={showDragAndDropZone}
                 label={
                   showDragAndDropZone ? "Subtitiles: ON" : "Subtitiles: OFF"
                 }

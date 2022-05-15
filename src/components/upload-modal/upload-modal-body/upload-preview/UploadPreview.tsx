@@ -1,10 +1,10 @@
 import React from "react";
 
-import { IUploadedFile } from "../../types";
+import { FileWithPreview } from "./../../../../libs";
 
 import * as Styled from "./UploadPreview.styled";
 
-export const UploadPreview: React.FC<{ uploadedFile: IUploadedFile }> = ({
+export const UploadPreview: React.FC<{ uploadedFile: FileWithPreview }> = ({
   uploadedFile,
 }) => {
   return (

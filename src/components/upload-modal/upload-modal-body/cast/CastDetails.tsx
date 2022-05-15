@@ -13,9 +13,10 @@ import { FileWithPreview } from "../../../../libs/models/uploads";
 
 export const CastDetails: React.FC<{
   onCastDetailsSubmit: (castDetails: ICast[]) => void;
-}> = ({ onCastDetailsSubmit }) => {
+  castDetails?: ICast[];
+}> = ({ onCastDetailsSubmit, castDetails }) => {
   const [isDisabled, setIsDisabled] = React.useState(true);
-  const [castList, setCastList] = React.useState<ICast[]>([]);
+  const [castList, setCastList] = React.useState<ICast[]>(castDetails || []);
 
   const [showAddIcon, setShowAddIcon] = React.useState(true);
   const [showCastUploadForm, setShowCastUploadForm] = React.useState(false);
